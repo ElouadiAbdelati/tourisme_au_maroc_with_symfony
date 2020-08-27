@@ -334,7 +334,6 @@ day: 'numeric'
 $('#covid').click(function(){
 	$('#mySidebar').animate({width: "300px"}, 1000);
 	$('#main').animate({marginRight: "300px"}, 1000);
-	$('#covid').animate({right: "300px"}, 1000);
 	$('html,body').animate({ scrollTop: 0 }, 2000);
 
 });
@@ -342,28 +341,9 @@ $('#covid').click(function(){
 $('#close_covid').click(function(){
 	$('#mySidebar').animate({width: "0"}, 1000);
 	$('#main').animate({marginRight: "0"}, 1000);
-	$('#covid').animate({right: "0"}, 1000);
 
 });
 
-/*function openNav() {
-	if(document.getElementById("mySidebar").style.width == "300px"){
-		document.getElementById("mySidebar").style.width = "0";
-  		document.getElementById("main").style.marginRight= "0";
-		document.getElementById("covid").style.right = "0";
-	}else {
-		document.getElementById("mySidebar").style.width = "300px";
-		document.getElementById("main").style.marginRight = "300px";
-		document.getElementById("covid").style.right = "300px";
-		$('html,body').scrollTop(0);
-	}
-}
 
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginRight= "0";
-	document.getElementById("covid").style.right = "0";
-
-}*/
 </script>
 </body></html>
