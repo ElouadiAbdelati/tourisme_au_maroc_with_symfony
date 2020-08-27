@@ -1,0 +1,175 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogSingleController!
+{% endblock %}
+
+{% block body %}
+	<!-- bradcam_area  -->
+	<div class="bradcam_area bradcam_bg_4">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="bradcam_text text-center">
+						<h3>{{blog.title}}</h3>
+
+						<p>Par
+							{{blog.user.nom  }}
+							{{blog.user.prenom}}
+							|
+							{{blog.createdAt | date() }}
+							|
+							{{blog.commentaireBlogs | length}}
+							Commentaires</p>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--/ bradcam_area  -->
+
+<!--================Blog Area =================-->
+<section class="blog_area single-post-area section-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 posts-list">
+				<div class="single-post">
+					<div class="feature-img">
+						<img class="img-fluid" src="{{asset('img/blog/' ~ blog.image)}}" alt="">
+					</div>
+					<div class="blog_details">
+						<h2>{{blog.title}}
+						</h2>
+						<ul class="blog-info-link mt-3 mb-4">
+							<li>
+								<a href="#">
+									<i class="fa fa-user"></i>
+									{% for tag in  blog.tags %}
+										{{tag.name }},
+									{% endfor %}
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-comments"></i>
+									{{blog.commentaireBlogs | length }}commentaires
+								</a>
+							</li>
+						</ul>
+						<p>
+							{{blog.content }}
+						</p>
+					</div>
+				</div>
+
+                {% if blog.commentaireBlogs is not empty %}
+				<div class="comments-area">
+					<h4>commentaires</h4>
+                    {% for commentaire in blog.commentaireBlogs %}
+
+					<div class="comment-list">
+						<div class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="desc">
+									<p class="comment">
+											{{commentaire.content}}									   
+									</p>
+									<div class="d-flex justify-content-between">
+										<div class="d-flex align-items-center">
+											<h5>
+												<h3> {{commentaire.name}}</h3>
+											</h5>
+											 
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                    {% endfor %}
+				</div>
+                {% endif %}
+				<div class="comment-form">
+					<h4>Laisser un commentaire</h4>
+					<div class="form-contact comment_form">
+                    {{ form_start(form) }}
+						<div class="row">
+							<div class="col-12">
+								<div class="form-group">
+                                    {{ form_widget(form.content, {'attr':{ 'class':'form-control w-100 ' ,'placeholder':"Ecrire commentaire"}}) }}
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+                                   {{ form_widget(form.name, {'attr':{ 'class':'form-control  ' ,'placeholder':"Nom"}}) }}
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+                                      {{ form_widget(form.email, {'attr':{ 'class':'form-control  ' ,'placeholder':"Email"}}) }}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="button button-contactForm btn_1 boxed-btn">Envoyer</button>
+						</div>
+                        {{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="blog_right_sidebar">
+					<aside class="single_sidebar_widget search_widget">
+						<form action="#">
+							<div class="form-group">
+								<div class="input-group mb-3">
+									<input type="text" class="form-control" placeholder='Search Keyword' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+									<div class="input-group-append">
+										<button class="btn" type="button">
+											<i class="ti-search"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+							<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Search</button>
+						</form>
+					</aside>
+					{% if  categories is not empty %}
+						<aside class="single_sidebar_widget post_category_widget">
+							<h4 class="widget_title">Categories</h4>
+							<ul class="list cat-list">
+								<li>
+									<a href="#" class="d-flex">
+										<p>Toutes</p>
+									</a>
+								</li>
+								{% for categorie in categories %}
+									<li>
+										<a href="#" class="d-flex">
+											<p>{{categorie.name}}</p>
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+						</aside>
+					{% endif %}
+					{% if tags is not empty  %}
+						<aside class="single_sidebar_widget tag_cloud_widget">
+							<h4 class="widget_title">Tags</h4>
+							<ul class="list">
+								{% for tag in tags %}
+									<li>
+										<a href="#">{{tag.name }}</a>
+									</li>
+								{% endfor  %}
+							</ul>
+						</aside>
+					{% endif %}>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--================ Blog Area end =================-->{% endblock %}

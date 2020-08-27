@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+{% block body %}
+ 
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_4">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>blog</h3>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+
+    <!--================Blog Area =================-->
+    <section class="blog_area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <div class="blog_left_sidebar">
+                       {% if blogs is empty %}
+                         <div class="row">
+							<div class="col-lg-12">
+								<div class="text-center">
+									<h2>
+										Il n'y a aucun Blog
+									</h2>
+									 
+								</div>
+							</div>
+                        </div>
+						{% endif %}
+                       {% for blog in blogs %}
+                        <article class="blog_item">
+                            <div class="blog_item_img">
+                                <img class="card-img rounded-0" src="{{asset('img/blog/' ~ blog.image)}}" alt="">
+                                <a href="#" class="blog_item_date">
+                                    <h3>{{blog.createdAt |date('d')}}</h3>
+                                    <p>{{blog.createdAt |date('m')}}</p>
+                                    <p>{{blog.createdAt |date('Y')}}</p>
+                                </a>
+                            </div>
+
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="{{path('blog_single',{'id':blog.id})}}">
+                                    <h2>{{blog.title}}</h2>
+                                </a>
+                                <p>{{blog.content | raw | split('.') | first }}... </p>
+                                <ul class="blog-info-link">
+                                    <li><p ><i class="fa fa-user"></i>
+                                     {% for tag in blog.tags %}
+                                          {{tag.name }},
+                                     {% endfor %}
+                                    </p></li>
+                                    <li><p><i class="fa fa-comments"></i> {{blog.commentaireBlogs | length }} commentaires </p> </li>
+                                </ul>
+                            </div>
+                        </article>
+                        {% endfor %}
+
+                       
+
+                     
+
+                        <nav class="blog-pagination justify-content-center d-flex">
+                            <ul class="pagination">
+                                {{ knp_pagination_render(blogs) }}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                   {% include "blog/aside.html.twig" %}
+            </div>
+        </div>
+    </section>
+    <!--================Blog Area =================-->
+    
+{% endblock %}
+{% block javascripts %}
+       <script>
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+                rightIcon: '<span class="fa fa-caret-down"></span>'
+            }
+        });
+        $('#datepicker2').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+                rightIcon: '<span class="fa fa-caret-down"></span>'
+            }
+
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!
+{% endblock %}
+
+{% block body %}
+	{{ app.session.set('contact','contact')}}
+	{% set v = app.session.remove('ville')%}
+	{% set d = app.session.remove('destination')%}
+	<!-- bradcam_area  -->
+	<div class="bradcam_area bradcam_bg_4">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="bradcam_text text-center">
+						<h3>Contactez-nous</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ bradcam_area  -->
+
+	<!-- ================ contact section start ================= -->
+	<section class="contact-section">
+		<div class="container">
+			<div class="d-none d-sm-block mb-5 pb-4">
+				<div id="map" style="height: 480px; position: relative; overflow: hidden;"></div>
+				<script>
+					function initMap() {
+var uluru = {
+lat: 31.669746,
+lng: -7.973328
+};
+var map = new google.maps.Map(document.getElementById('map'), {
+center: uluru,
+zoom: 10,
+scrollwheel: false
+});
+var marker = new google.maps.Marker({position: uluru, map: map});
+marker.setTitle("Marrakech");
+}
+				</script>
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&amp;callback=initMap"></script>
+
+			</div>
+		</div>
+
+		{% if result=="succee" %}
+			<div class="container">
+				<div class="alert alert-primary" role="alert">
+					<strong>le messsage a bien ete  envoye!</strong>
+				</div>
+			</div>
+		{% endif %}
+		{% if result=="vide"   %}
+			<div class="container">
+				<div class="alert alert-danger" role="alert">
+					<strong>erreur</strong>
+				</div>
+			</div>
+		{% endif %}
+
+		<div class="row">
+			<div class="col-12">
+				<h2 class="contact-title">contact</h2>
+			</div>
+			<div class="col-lg-8">
+				<form class="form-contact contact_form" action="{{path('send_email')}}" method="post" id="contactForm" novalidate="novalidate">
+					<div class="row">
+						<div class="col-12">
+							<div class="form-group">
+								<textarea class="form-control w-100" name="message" id="message" placeholder=" Entre votre Message" required></textarea>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<input class="form-control valid" name="name" id="name" type="text" placeholder="Entre votre nom" required>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<input class="form-control valid" name="email" id="email" type="email" placeholder="Email" required>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="form-group">
+								<input class="form-control " name="subject" id="subject" type="text" placeholder="Entre votre sujet" required>
+							</div>
+						</div>
+					</div>
+					<div class="form-group mt-3">
+						<button type="submit" class="button button-contactForm boxed-btn">Envoyer</button>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</section>
+<!-- ================ contact section end ================= -->{% endblock %}

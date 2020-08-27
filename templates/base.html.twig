@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			MghribNa!
+		</title>
+		{% block stylesheets %}{% endblock %}
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="description" content="">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- <link rel="manifest" href="site.webmanifest"> -->
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png')}}">
+		<!-- Place favicon.ico in the root directory -->
+
+		<!-- CSS here -->
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}"> <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')}}">
+		<link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}">
+		<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
+		<link rel="stylesheet" href="{{ asset('css/slicknav.css')}}">
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+		<link rel="stylesheet" href="{{ asset('css/style1.css')}}">
+		<link rel="stylesheet" href="{{ asset('css/covid_sidebar.css')}}">
+		<link rel="stylesheet" href="{{ asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		
+
+	</head>
+	<body>
+		<!-- header-start -->
+<style s>
+
+</style> 
+
+<div id="mySidebar" class="sidebar">
+  
+<a id="close_covid" href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+<h1 id='title' class="title">Novel Coronavirus (COVID-19) Live Tracker Morocco</h1>
+<div class="container-bar">
+  <!-- Card stats -->
+  <div class="card-covid card-starts">
+    <!-- Card body -->
+    <div class="card-body">
+      <div class="col">
+        <h5 class="card-title text-uppercase text-muted">Cas Confirmés</h5>
+        <span id='total-cases' class="h2 font-weight-bold total_cases color-red count">0</span>
+      </div>
+      <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+        <i class="fas fa-users"></i>
+      </div>
+    </div>
+  </div>
+  <div class="card-covid card-stats">
+    <!-- Card body -->
+    <div class="card-body">
+      <div class="col">
+        <h5 class="card-title text-uppercase text-muted">Décès</h5>
+        <span id='deaths' class="h2 font-weight-bold deaths color-blue count">0</span>
+      </div>
+      <div class="icon icon-shape bg-gradient-blue text-white rounded-circle shadow">
+        <i class="fas fa-procedures"></i>
+      </div>
+    </div>
+  </div>
+  <div class="card-covid card-stats">
+    <!-- Card body -->
+    <div class="card-body">
+      <div class="col">
+        <h5 class="card-title text-uppercase text-muted">Guéris</h5>
+        <span id='recovered' class="h2 font-weight-bold recovered color-green count">0</span>
+      </div>
+      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+        <i class="fas fa-child"></i>
+      </div>
+    </div>
+  </div>
+  <div class="card-covid card-stats">
+    <!-- Card body -->
+    <div class="card-body">
+      <div class="col">
+        <h5 class="card-title text-uppercase text-muted">Nouveaux cas</h5>
+        <span id='new-cases' class="h2 font-weight-bold new_cases color-orange count">0</span>
+      </div>
+      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+        <i class="fas fa-bell"></i>
+      </div>
+    </div>
+  </div>
+</div>
+    {# <!-- Card body -->
+    <div class="card-body">
+      <div class="col">
+        <h5 class="card-title text-uppercase text-muted">Nouveaux Guéris</h5>
+        <span id='new-recovered' class="h2 font-weight-bold new_cases color-orange count">0</span>
+      </div>
+      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+        <i class="fas fa-bell"></i>
+      </div>
+    </div>
+  </div>
+</div> #}
+
+{% if app.request.attributes.get('_route') == "destination_details"  %}
+<script>
+	
+var region = "{{ ville.region.nom }}";
+
+	fetch('https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=RegionFr%20%3D%20%27'+ region +'%27&outFields=*&returnGeometry=false&outSR=4326&f=json').then(response => response.json()).then(data => {
+		document.getElementById('title').innerHTML = "L'état sanitaire dans la région de " + data.features[0].attributes.Nom_Région_FR + ' ' + data.features[0].attributes.Nom_Région_AR;
+		document.getElementById('total-cases').innerHTML = data.features[0].attributes.Cases;
+		document.getElementById('deaths').innerHTML = data.features[0].attributes.Deaths;
+		document.getElementById('recovered').innerHTML = data.features[0].attributes.Recoveries;
+		document.getElementById('new-cases').innerHTML = 0;
+	});
+
+
+</script>
+
+{% else %}
+<script>
+	
+	fetch('https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=*&returnGeometry=false&outSR=4326&f=json').then(response => response.json()).then(data => {
+		let index = data.features.length-1;
+
+ 		var date = new Date(data.features[index].attributes.Date);	
+let dateLocale = date.toLocaleString('fr-FR', {
+weekday: 'long',
+year: 'numeric',
+month: 'long',
+day: 'numeric'
+});
+		 document.getElementById('title').innerHTML = "L'état sanitaire du Maroc le " + dateLocale;
+		document.getElementById('total-cases').innerHTML = data.features[index].attributes.Cas_confirmés;
+		document.getElementById('deaths').innerHTML = data.features[index].attributes.Décédés;
+		if(data.features[index].attributes.Retablis != null)
+			document.getElementById('recovered').innerHTML = data.features[index].attributes.Retablis;
+		else
+			document.getElementById('recovered').innerHTML = 0;
+		document.getElementById('new-cases').innerHTML = data.features[index].attributes.Cas_Jour;
+		document.getElementById('new-recovered').innerHTML = data.features[index].attributes.Rtabalis_jour;
+	});
+	</script>
+{% endif %}
+
+
+
+
+
+</div>
+<div id="main">
+  <button id='covid' class="openbtn" onclick="openNav()" width="10">
+  <img src='{{asset("img/covid-19/covid.png")}}' alt="covid" width="50" height="50">
+  <br>
+  Covid-19
+</button>  
+  		<header>
+			<div class="header-area ">
+				<div id="sticky-header" class="main-header-area">
+					<div class="container-fluid">
+						<div class="header_bottom_border">
+							<div class="row align-items-center">
+								<div class="col-xl-2 col-lg-2">
+									<div class="logo">
+										<a href="{{ path('home') }}">
+											<h2 style="color: red;">Mghrib<span style="color: green;">NA<span></h2>
+												</a>
+											</div>
+										</div>
+										<div class="col-xl-6 col-lg-6">
+											<div class="main-menu  d-none d-lg-block">
+												<nav>
+													<ul id="navigation">
+														<li>
+															<a class="active" href="{{path('home')}}">Accuiel</a>
+														</li>
+														<li>
+															<a class="" href="{{path('destination')}}">Destination</a>
+														</li>
+														<li>
+														   <a href="{{path('blog')}}" > Blog </a>
+														</li>
+														<li>
+															<a href="{{ path('contact') }}">Contact</a>
+														</li>
+													</ul>
+												</nav>
+											</div>
+										</div>
+										<div class="col-xl-4 col-lg-4 d-none d-lg-block">
+											<div class="social_wrap d-flex align-items-center justify-content-end">
+												<div class="number">
+													<p>
+														<i class="fa fa-phone"></i>
+														+212 600-000000</p>
+												</div>
+												<div class="social_links d-none d-xl-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+														<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-google"></i></a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="seach_icon">
+											<a href="{{path('app_login')}}">
+												<i class="fa fa-sign-in fa-7x "></i>
+											</a>
+										</div>
+										<div class="col-12">
+											<div class="mobile_menu d-block d-lg-none"></div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</body>
+			</body>
+		</html>
+	</body>
+</html></header><!-- header-end -->{% block body %}{% endblock %}<footer class="footer">
+<div class="footer_top">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-4 col-md-6 col-lg-4 ">
+				<div class="footer_widget">
+					<div class="footer_logo">
+						<a href="#">
+							MghribNA
+						</a>
+					</div>
+					<p>Marrakech
+						<br>
+						Maroc
+						<br>
+						<a href="#">+212 600-000000</a>
+						<br>
+						<a href="#">mghribna@gmail.com</a>
+					</p>
+					<div class="socail_links">
+						<ul>
+							<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#"><i class="fab fa-google"></i></a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-xl-3 col-md-6 col-lg-3">
+				<div class="footer_widget">
+					<h3 class="footer_title">
+						Lieux populaires
+					</h3>
+					<ul class="links double_links">
+						<li>
+							<a href="#">Azilal</a>
+						</li>
+						<li>
+							<a href="#">Casablanca</a>
+						</li>
+						<li>
+							<a href="#">Fes</a>
+						</li>
+						<li>
+							<a href="#">Essaouira</a>
+						</li>
+						<li>
+							<a href="#">Marrakech</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-xl-3 col-md-6 col-lg-3">
+				<div class="footer_widget">
+					<h3 class="footer_title">
+						Instagram
+					</h3>
+					<div class="instagram_feed">
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/1.png')}}" alt="">
+							</a>
+						</div>
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/2.png')}}" alt="">
+							</a>
+						</div>
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/3.png')}}" alt="">
+							</a>
+						</div>
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/4.png')}}" alt="">
+							</a>
+						</div>
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/5.png')}}" alt="">
+							</a>
+						</div>
+						<div class="single_insta">
+							<a href="#">
+								<img src="{{asset('img/instagram/6.png')}}" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div></footer><!-- JS here --><script src="{{ asset('js/vendor/modernizr-3.5.0.min.js')}}"></script><script src="{{ asset('js/vendor/jquery-1.12.4.min.js')}}"></script><script src="{{ asset('js/popper.min.js')}}"></script><script src="{{ asset('js/bootstrap.min.js')}}"></script><script src="{{ asset('js/owl.carousel.min.js')}}"></script><script src="{{ asset('js/wow.min.js')}}"></script><script src="{{ asset('js/jquery.slicknav.min.js')}}"></script><script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script><script src="{{ asset('js/main.js')}}"></script><script src="https://unpkg.com/axios/dist/axios.min.js"></script><script src="{{ asset('js/ajax.js')}}"></script>{% block javascripts %}{% endblock %}
+
+  
+</div>
+
+<script>
+
+$('#covid').click(function(){
+	$('#mySidebar').animate({width: "300px"}, 1000);
+	$('#main').animate({marginRight: "300px"}, 1000);
+	$('#covid').animate({right: "300px"}, 1000);
+	$('html,body').animate({ scrollTop: 0 }, 2000);
+
+});
+
+$('#close_covid').click(function(){
+	$('#mySidebar').animate({width: "0"}, 1000);
+	$('#main').animate({marginRight: "0"}, 1000);
+	$('#covid').animate({right: "0"}, 1000);
+
+});
+
+/*function openNav() {
+	if(document.getElementById("mySidebar").style.width == "300px"){
+		document.getElementById("mySidebar").style.width = "0";
+  		document.getElementById("main").style.marginRight= "0";
+		document.getElementById("covid").style.right = "0";
+	}else {
+		document.getElementById("mySidebar").style.width = "300px";
+		document.getElementById("main").style.marginRight = "300px";
+		document.getElementById("covid").style.right = "300px";
+		$('html,body').scrollTop(0);
+	}
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginRight= "0";
+	document.getElementById("covid").style.right = "0";
+
+}*/
+</script>
+</body></html>

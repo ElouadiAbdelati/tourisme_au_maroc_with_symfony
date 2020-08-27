@@ -1,0 +1,25 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+    #    products:
+    #        uri_prefix: /images/products
+    #        upload_destination: '%kernel.project_dir%/public/images/products'
+        hotel_path:
+           uri_prefix: '%uploads_path%'
+           upload_destination: '%kernel.project_dir%/public/%uploads_path%'
+        resto_path:
+           uri_prefix: '/img/resto/'
+           upload_destination: '%kernel.project_dir%/public/img/resto/'
+        activite_path:
+           uri_prefix: '/img/activite/'
+           upload_destination: '%kernel.project_dir%/public/img/activite/'
+        camping_path:
+           uri_prefix: '/img/camping/'
+           upload_destination: '%kernel.project_dir%/public/img/camping/'
+        ville_path:
+           uri_prefix: '/img/place/'
+           upload_destination: '%kernel.project_dir%/public/img/place/'
+        blog_path:
+           uri_prefix: '/img/blog/'
+           upload_destination: '%kernel.project_dir%/public/img/blog/'

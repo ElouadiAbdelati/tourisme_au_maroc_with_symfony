@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DestinationController!
+{% endblock %}
+
+{% block body %}
+	{{ app.session.set('destination','destination')}}
+	{% set v = app.session.remove('ville') %}
+	{% set c= app.session.remove('contact') %}
+
+	<!-- bradcam_area  -->
+	<div class="bradcam_area bradcam_bg_2">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="bradcam_text text-center">
+						<h3>Destinations</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ bradcam_area  -->
+	<script>
+		var nameVilles = [];
+	</script>
+	{% for ville in villes %}
+		<script>
+			nameVilles.push("{{ ville.name }}");
+		</script>
+		<div class="js-user-rating" data-is-authenticated="{{ ville | json_encode | raw }}">
+     </div>
+	{% endfor %}
+     
+	<div class="popular_places_area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="filter_result_wrap">
+						<h3>Filter de résultats</h3>
+						<form class="chatAjaxForm" action="{{path('destination_filter')}}" method="post">
+							<div class="filter_bordered">
+								<div class="filter_inner">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="form-group">
+												<select id="region" name="idRegion" class="form-control">
+													<option value="0" selected>toutes les Régions</option>
+													{% for region in regions %}
+														<option value="{{region.id}}">{{region.nom}}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+
+										<div class="col-lg-12">
+											<div class="form-group">
+												<select class="form-control">
+													<option data-display="Type voyage">Type voyage</option>
+													<option value="1">Trip</option>
+													<option value="2">Famille</option>
+													<option value="4">Aventure</option>
+													<option value="4">Séjour</option>
+													<option value="4">Randonnée</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="reset_btn">
+									<button class="boxed-btn4" type="submit">Réinitialiser</button>
+									<p id="ana"></p>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<div class="row">
+
+						{% for ville in villes %}
+							<div id="{{ville.name}}" class="col-lg-6 col-md-6">
+								<div class="single_place">
+									<div class="thumb">
+										<img src="{{asset("/img/place/" ~ ville.image)}}" alt={{ ville.name }}>
+									</div>
+									<div class="place_info">
+										<a href="{{ path('destination_details', {'name': ville.name}) }}">
+											<h3>{{ville.name | replace({'_': " "})}}</h3>
+										</a>
+										{# <p>{{ville.region.nom}}</p> #}
+										<div class="rating_days d-flex justify-content-between">
+											<span class="d-flex justify-content-center align-items-center">
+												<a href="{{path('ville_like', {'id':ville.id})}}" class="btn btn-link js-like">
+													{% if app.user  and  ville.isLikedByUser(app.user) %}
+														<i class="fas fa-heart fa-7x"></i>
+													{% else %}
+														<i class="far fa-heart fa-7x"></i>
+													{% endif %}
+													<span class="js-liks">{{ville.likes| length}}</span>
+													<span class="js-label">J'aime</span>
+												</a>
+											</span>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor%}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	{% endblock %}
+	{% block javascripts %}
+		<script src="{{asset('js/filter-ajax.js')}}"></script>
+	{% endblock %}

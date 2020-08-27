@@ -1,0 +1,181 @@
+body {
+    font-family: "Lato", sans-serif;
+  }
+  
+  .sidebar {
+    
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      right: 0;
+  
+      padding-top: 60px;
+      font-family: Open Sans, sans-serif;
+      background-color: white;
+      
+  }
+  
+  .sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    position: fixed;
+    padding: 20px 5px;
+    border: none;
+    top: 250px;
+    right: 0px;
+  }
+  
+  .openbtn:hover {
+    background-color: #006400	;
+  }
+  
+  #main {
+    transition: margin-left .5s;
+  }
+  
+  #covid_icon{
+    max-width: 50%;
+    height: auto;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }
+  
+  
+  .text-muted {
+    color: #8898aa !important;
+  }
+  
+  .text-uppercase {
+    text-transform: uppercase !important;
+  }
+  
+  .text-white {
+    color: #fff !important;
+  }
+  
+  .shadow {
+    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+  }
+  
+  .rounded-circle {
+    border-radius: 50% !important;
+  }
+  
+  .font-weight-bold {
+    font-weight: 700 !important;
+  }
+  
+  .container-bar {
+    width: 300px;
+    height: auto;
+    background: #f4f8fd;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  h1.title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 1rem 0;
+  }
+  
+  .col {
+    max-width: 100%;
+    flex-basis: 0;
+    flex-grow: 1;
+  } 
+  
+  .card-covid {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0;
+    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+    border-radius: 15px;
+    margin: 10px;
+  }
+  
+  .card-body {
+    min-height: 1px;
+    padding: 1.5rem;
+    display: flex;
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+  }
+  
+  .card-body .h2 {
+    font-size: 2rem;
+  }
+  
+  .icon {
+    width: 4rem;
+    height: 4rem;
+    max-width: 100%;
+    flex: 0 0 auto;
+  }
+  
+  .icon-shape {
+    display: inline-flex;
+    padding: 12px;
+    text-align: center;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon-shape i,
+  .icon-shape svg {
+    font-size: 2rem;
+  }
+  
+  .bg-gradient-red {
+    background: linear-gradient(87deg, #f5365c 0, #f56036 100%) !important;
+  }
+  
+  .bg-gradient-blue {
+    background: linear-gradient(87deg, #11cdef 0, #1171ef 100%) !important;
+  }
+  
+  .bg-gradient-green {
+    background: linear-gradient(87deg, #2dce89 0, #2dcecc 100%) !important;
+  }
+  
+  .bg-gradient-orange {
+    background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+  }
+  

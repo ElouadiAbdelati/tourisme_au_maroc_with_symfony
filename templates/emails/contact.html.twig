@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head><meta charset='UTF-8'>
+		<title>Express Mail</title>
+	</head>
+	<body>
+		<table style='width: 100%;'>
+			<thead style='text-align: center;'>
+				<tr>
+					<td style='border:none;' colspan='2'></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style='border:none;'>
+						<strong>Name:</strong>
+						{{contact.name}}</td>
+					<td style='border:none;'>
+						<strong>Email:</strong>
+						{{contact.from}}</td>
+				</tr>
+				<tr>
+					<td style='border:none;'>
+						<strong>Subject:</strong>
+						{{contact.subject}}</td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan='2' style='border:none;'>{{contact.cmessage}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

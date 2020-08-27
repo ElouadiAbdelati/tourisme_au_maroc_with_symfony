@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log up!
+{% endblock %}
+{% block body %}
+	{{ form_start(registrationForm) }}
+	<section class="sign-up text-center">
+		<div class="bac-signup">
+			<div class="signup">
+				<div class="container d-flex justify-content-center">
+					<div class="row">
+						<div class="col-md-12">
+							<i class="fa fa-group fa-5x"></i>
+							<h1>Inscription</h1>
+							<div class="form-error">
+								<h1>{{ form_errors(registrationForm.password) }}<h1>
+                                <h1>{{ form_errors(registrationForm.email) }}<h1>
+							</div>
+						</div>
+
+						<div class="col-md-6 ">
+							<label>
+								<i class="fa fa-user fa-tw"></i>Nom</label><br>
+							{{ form_widget(registrationForm.nom) }}
+						</div>
+
+						<div class="col-md-6">
+							<label>
+								<i class="fa fa-user fa-tw"></i>Prenom</label><br>
+							{{ form_widget(registrationForm.prenom) }}
+						</div>
+						<div class="col-md-6">
+							<label>
+								<i class="fa fa-envelope fa-tw"></i>Email</label><br>
+							{{ form_widget(registrationForm.email) }}
+						</div>
+						<div class="col-md-6">
+							<label>
+								<i class="fa fa-user fa-tw"></i>Mot de passe</label><br>
+							{{ form_widget(registrationForm.password) }}
+						</div>
+						<div class="col-md-6">
+							<label>
+								<i class="fa fa-user fa-tw"></i>login</label><br>
+							{{ form_widget(registrationForm.userName) }}
+						</div>
+						<div class="col-md-6">
+							<i class="fa fa-user fa-tw"></i>
+							<label>Tele</label><br>
+							{{ form_widget(registrationForm.tel)  }}
+						</div>
+
+						<div class="col-md-12">
+							<button class="btn btn-primary btn-lg">
+								<i class="fa fa-send fa-tw "></i>
+								{{ button_label|default('sauvegarder') }}</button>
+						</div>
+					</div>
+				</div>
+				<br><br><br><br>
+
+
+			</div>
+		</div>
+	</section>
+	{{ form_end(registrationForm) }}
+{% endblock %}

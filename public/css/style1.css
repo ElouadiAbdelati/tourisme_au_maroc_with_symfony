@@ -1,0 +1,78 @@
+/* login and inscription*/
+
+.sign-up {
+    color: #DDD;
+}
+
+.sign-up .bac-signup {
+    background: url(../img/con1.jpg)no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 300px;
+    margin-bottom: 40px;
+}
+
+.sign-up .bac-signup .signup {
+    background: rgba(9, 9, 9, 0.7);
+    min-height: 300px;
+    color: #DDD;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.sign-up .signup h1 {
+    margin-bottom: 40px;
+    color: white;
+}
+
+.sign-up .form-group i {
+    float: left;
+    position: relative;
+    top: -31px;
+    left: 14px;
+    height: 0;
+    color: #999;
+}
+
+.sign-up .signup label {
+    font-size: 21px;
+}
+
+.sign-up .signup input {
+    background: rgba(87, 60, 60, 0.5);
+    color: #FFF;
+    margin: 18px;
+}
+
+.sign-up form input {
+    padding-left: 39px;
+}
+
+
+/*end*/
+
+
+/* comentaire*/
+
+.comentaire-ville {
+    background: url(../img/con1.jpg)no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 300px;
+    margin-bottom: 20px;
+}
+
+.comentaire-ville .fields {
+    background: rgba(9, 9, 9, 0.7);
+    min-height: 300px;
+    color: #DDD;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+
+/* end */
