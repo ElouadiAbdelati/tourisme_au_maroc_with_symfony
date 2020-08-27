@@ -1,4 +1,7 @@
 {
+    "composer/package-versions-deprecated": {
+        "version": "1.8.2"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
