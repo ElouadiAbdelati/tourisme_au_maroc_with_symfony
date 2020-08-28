@@ -49,304 +49,849 @@
 	</div>
 
 
-	
+	<!-- start map-->
+	<div class="container">
+		<div class="d-none d-sm-block mb-5 pb-4">
+			<div id="map" style="height: 480px; width: 770px; position: relative;"></div>
 
 
-	{% if hotels is not empty  and hotelMarkers is not empty %}
-		<!-- start hotels-->
-		<div class="popular_places_area">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6">
-						<div class="section_title text-center mb_70">
-							<h3>Hotels</h3>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					{% for marker in hotelMarkers %}
-						{% for hotel in  hotels%}
-							{% if marker.name | replace({' ': '_'}) == hotel.nom | replace({' ': '_'}) %}
-								<div id={{marker.name | replace({' ': '_'} )}} class="col-lg-4 col-md-6">
-									<div class="single_place">
-										<div class="thumb">
-											<img width="400" height="340" src="{{asset('/img/hotel/' ~ hotel.imgPath )}}" alt={{hotel.nom}}>
+			<div class="col-lg-4" style=" left: 790px; top: -480px;">
+				<div class="filter_result_wrap">
+					<h3>Filter de résultats</h3>
+					<div class="filter_bordered">
+						<div class="filter_inner">
+							<div class="row">
+								<form class="was-validated">
+									{% if hotelMarkers is not empty %}
+										<div class="custom-control form-check-inline custom-checkbox mb-3">
+											<input type="checkbox" class="custom-control-input" id="customControlValidation1" value="hotels" required checked>
+											<label class="custom-control-label" for="customControlValidation1">Hotels</label>
+											<img src='{{asset("img/marker_icon/hotel_30.png")}}' alt="">
+											<div class="invalid-feedback">Not checked</div>
 										</div>
-										<div class="place_info">
-											<a href="destination_details.html">
-												<h3>{{marker.name}}</h3>
-											</a>
-											<div class="rating_days d-flex justify-content-between">
-												<span class="d-flex justify-content-center align-items-center">
-													<a href="{{path('hotel_like', {'id':hotel.id})}}" class="btn btn-link js-like-hotel">
-														{% if app.user  and  hotel.isLikedByUser(app.user) %}
-															<i class="fas fa-heart fa-7x"></i>
-														{% else %}
-															<i class="far fa-heart fa-7x"></i>
-														{% endif %}
-														<span class="js-liks-hotel">{{hotel.likes| length}}</span>
-														<span class="js-label">J'aime</span>
-													</a>
-												</span>
-											</div>
+									{% else %}
+										<div class="custom-control form-check-inline custom-checkbox mb-3">
+											<input type="checkbox" class="custom-control-input" id="customControlValidation1" value="hotels" required disabled>
+											<label class="custom-control-label" for="customControlValidation1">Hotels</label>
+											<img src='{{asset("img/marker_icon/hotel_30.png")}}' alt="">
+											<div class="invalid-feedback">Not checked</div>
 										</div>
-									</div>
-								</div>
-							{% endif %}
-						{% endfor %}
-					{% endfor %}
-				</div>
-			</div>
-		</div>
-	{% endif %}
-	<!-- end hotels-->
+									{% endif %}
 
-	<!-- start Restaurants-->
-	{% if restos is not empty %}
-		<div class="popular_places_area">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6">
-						<div class="section_title text-center mb_70">
-							<h3>Restaurants</h3>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					{% for marker in restoMarkers %}
-						{% for resto in  restos%}
-							{% if marker.name | replace({' ': '_'}) == resto.nom | replace({' ': '_'}) %}
-								<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
-									<div class="single_place">
-										<div class="thumb">
-											<img style="width: 400px; height: 425px;" src="{{asset('/img/resto/' ~ resto.imgPath)}}" alt="resto.nom">
+									{% if restoMarkers is not empty %}
+										<div class="custom-control custom-checkbox mb-3">
+											<input type="checkbox" class="custom-control-input" id="customControlValidation2" value="restos" required checked>
+											<label class="custom-control-label" for="customControlValidation2">Restorants</label>
+											<img src='{{asset("img/marker_icon/resto_30.png")}}' alt="">
+											<div class="invalid-feedback">Not checked</div>
 										</div>
-										<div class="place_info">
-											<a href="destination_details.html">
-												<h3>{{marker.name}}</h3>
-											</a>
-											<div class="rating_days d-flex justify-content-between">
-												<span class="d-flex justify-content-center align-items-center">
-													<a href="{{path('resto_like', {'id':resto.id})}}" class="btn btn-link js-like-resto">
-														{% if app.user  and  resto.isLikedByUser(app.user) %}
-															<i class="fas fa-heart fa-7x"></i>
-														{% else %}
-															<i class="far fa-heart fa-7x"></i>
-														{% endif %}
-														<span class="js-liks-resto">{{resto.likes| length}}</span>
-														<span class="js-label">J'aime</span>
-													</a>
-												</span>
-											</div>
+									{% else %}
+										<div class="custom-control custom-checkbox mb-3">
+											<input type="checkbox" class="custom-control-input" id="customControlValidation2" value="restos" required disabled>
+											<label class="custom-control-label" for="customControlValidation2">Restorants</label>
+											<img src='{{asset("img/marker_icon/resto_30.png")}}' alt="">
+											<div class="invalid-feedback">Not checked</div>
 										</div>
-									</div>
-								</div>
-							{% endif %}
-						{% endfor %}
-					{% endfor %}
-				</div>
-			</div>
-		</div>
-	{% endif %}
-	<!-- end Restaurants-->
+									{% endif %}
 
-	<!-- start activite-->
-	{% if activites is not empty %}
-		<div class="popular_places_area">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6">
-						<div class="section_title text-center mb_70">
-							<h3>Activités</h3>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					{% for marker in activiteMarkers %}
-						{% for activite in  activites %}
-							{% if marker.name | replace({' ': '_'}) == activite.nom | replace({' ': '_'}) %}
-								<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
-									<div class="single_place">
-										<div class="thumb">
-											<img style="width: 400px; height: 425px;" src="{{asset('/img/activite/' ~ activite.imgPath)}}" alt="activite.nom">
+									{% if activiteMarkers is not empty %}
+										<div class="custom-control custom-checkbox mb-3">
+											<input type="checkbox" class="custom-control-input" id="customControlValidation3" value="restos" required checked>
+											<label class="custom-control-label" for="customControlValidation3">Activités</label>
+											<img src='{{asset("img/marker_icon/activite30.png")}}' alt="">
+											<div class="invalid-feedback">Not checked</div>
 										</div>
-										<div class="place_info">
-											<a href="destination_details.html">
-												<h3>{{marker.name}}</h3>
-											</a>
-											<div class="rating_days d-flex justify-content-between">
-												<span class="d-flex justify-content-center align-items-center">
-													<a href="{{path('activite_like', {'id':activite.id})}}" class="btn btn-link js-like-activite">
-														{% if app.user  and  activite.isLikedByUser(app.user) %}
-															<i class="fas fa-heart fa-7x"></i>
-														{% else %}
-															<i class="far fa-heart fa-7x"></i>
-														{% endif %}
-														<span class="js-liks-activite">{{activite.likes| length}}</span>
-														<span class="js-label">J'aime</span>
-													</a>
-												</span>
-											</div>
+									{% else %}
+										<div class="custom-control custom-checkbox mb-3">
+											<input type="checkbox" class="custom-control-input" id="customControlValidation3" value="restos" required disabled>
+											<label class="custom-control-label" for="customControlValidation3">Activités</label>
+											<img src='{{asset("img/marker_icon/activite30.png")}}' alt="">
+											<div class="invalid-feedback">Not checked</div>
 										</div>
-									</div>
-								</div>
-							{% endif %}
-						{% endfor %}
-					{% endfor %}
-				</div>
-			</div>
-		</div>
+									{% endif %}
 
-	{% endif %}
-	<!-- end Restaurants-->
-
-	<!-- start campings-->
-	{% if campings is not empty %}
-		<div class="popular_places_area">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6">
-						<div class="section_title text-center mb_70">
-							<h3>Campings</h3>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					{% for marker in campingMarkers %}
-						{% for camping in  campings %}
-							{% if marker.name | replace({' ': '_'}) == camping.nom | replace({' ': '_'}) %}
-								<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
-									<div class="single_place">
-										<div class="thumb">
-											<img style="width: 400px; height: 425px;" src="{{asset('/img/camping/' ~ camping.imgPath)}}" alt="camping.nom">
+									{% if campingMarkers is not empty %}
+										<div class="custom-control custom-checkbox mb-3">
+											<input type="checkbox" class="custom-control-input" id="customControlValidation4" value="restos" required checked>
+											<label class="custom-control-label" for="customControlValidation4">Campings</label>
+											<img src='{{asset("img/marker_icon/tent30.png")}}' alt="">
+											<div class="invalid-feedback">Not checked</div>
 										</div>
-										<div class="place_info">
-											<a href="destination_details.html">
-												<h3>{{marker.name}}</h3>
-											</a>
-											<div class="rating_days d-flex justify-content-between">
-												<span class="d-flex justify-content-center align-items-center">
-													<a href="{{path('camping_like', {'id':camping.id})}}" class="btn btn-link js-like-camping">
-														{% if app.user  and  camping.isLikedByUser(app.user) %}
-															<i class="fas fa-heart fa-7x"></i>
-														{% else %}
-															<i class="far fa-heart fa-7x"></i>
-														{% endif %}
-														<span class="js-liks-camping">{{camping.likes| length}}</span>
-														<span class="js-label">J'aime</span>
-													</a>
-												</span>
-											</div>
+									{% else %}
+										<div class="custom-control custom-checkbox mb-3">
+											<input type="checkbox" class="custom-control-input" id="customControlValidation4" value="restos" required disabled>
+											<label class="custom-control-label" for="customControlValidation4">Campings</label>
+											<img src='{{asset("img/marker_icon/tent30.png")}}' alt="">
+											<div class="invalid-feedback">Not checked</div>
 										</div>
-									</div>
-								</div>
-							{% endif %}
-						{% endfor %}
-					{% endfor %}
-				</div>
-			</div>
-		</div>
-	{% endif %}
-	<!-- start comntaire-->
-
-	
-
-	<div class="newletter_area overlay">
-		<div class="container  d-flex justify-content-center">
-			<div class="row align-items-center">
-				<div class="row align-items-center">
-					<form class="AjaxForm" action="{{path('comentaire')}}" method="post" enctype="multipart/form-data">
-						<div class="col-lg-12">
-							<div class="single_input">
-								<textarea name="" id="comentaire" cols="30" rows="7" placeholder=" votre comentaire"></textarea>
+									{% endif %}
+								</form>
 							</div>
 						</div>
-						<div class="col-lg-12">
-							<input name="ville" id="ville" type="hidden" value="{{ville.id}}">
-						</div>
-						<div class="col-lg-12">
-
-							{%  if app.user %}
-								<div class="custom-file">
-									<input type="file" class="custom-file-input" id="customFile" accept="image/png, image/jpeg">
-									<label class="custom-file-label" for="customFile">
-										la  photo choisi</label>
-									<br><br>
-								</div>
-
-								<div class="newsletter_btn">
-									<button class="boxed-btn4 " type="submit">Envoyer<i class="fa fa-send fa-tw cont-send"></i>
-									</button>
-								</div>
-							{% else %}
-
-								<div class="newsletter_text">
-									<p>Pour faire un commentaire,  vous devez
-										<br>
-										être connecté ,
-										<button type="button" class="btn btn-secondary">
-											<a href="{{path('comentaire')}}">
-												ici</a>
-										</button>
-									</p>
-								</div>
-
-							{% endif %}
-						</div>
-					</form>
+					</div>
 				</div>
-
 			</div>
-		</div>
-	</div>
-	<br><br><br>
+			<script language="JavaScript" type="text/javascript" src="/js/vendor/jquery-1.12.4.min.js"></script>
 
-	<!-- end comntaire-->
-{% endblock %}
 
-{% block javascripts %}
-	<script src="{{asset('js/like_hotel_camping_activite_resto_ajax.js')}}"></script>
-	<script src="{{asset('js/commentaire-ajax.js')}}"></script>
-	<script>
-		(function () {
-document.querySelector('.AjaxForm').addEventListener('submit', function (e) {
-e.preventDefault();
-var formD = new FormData()
-formD.append('comentaire', $('#comentaire').val());
-formD.append('ville', $('#ville').val());
-formD.append('file', document.getElementById('customFile').files[0]);
-var contentType = {
-headers: {
-"content-type": "multipart/form-data"
-}
+			<script>
+				var hotelMarkers = [];
+var campingMarkers = [];
+var restoMarkers = [];
+var activiteMarkers = [];
+			</script>
+			{% for hotelMarker in hotelMarkers %}
+				<script>
+					var hotelMarker = {
+position: {
+lat: {{ hotelMarker.lat }},
+lng: {{ hotelMarker.lng }}
+},
+title: "{{ hotelMarker.name | replace({' ': '_'}) }}"
 };
-axios.post($(".AjaxForm").attr('action'), formD, contentType).then(function (response) {
-const $error = response.data.error;
-const newFilename = response.data.newFilename;
-if ($error == "empty" && newFilename == "empty") {
-$('#error').hide();
-$('#comentaires').append('<div id="error"class="alert alert-danger" role="alert"><strong>il faut remplir au moin un champ !!</strong>');
-} else {
-const comentaire = response.data.comentaire;
-const nom = response.data.nom;
-const prenom = response.data.prenom;
-$('#comentaires').append("<h4>" + nom + " " + prenom + "</h4>");
-if ($error != "empty") {
-$('#comentaires').append("<p>" + comentaire + "</h>");
-$('#comentaire').val("");
-}
-if (newFilename != "empty") {
-const assetsBaseDir = "{{ asset('img/comentaire/') }}";
-$('#comentaires').append('<div class="container"><img style="height:200px; width:200px ;" src="' + assetsBaseDir + newFilename + '"></div>');
-}
-$('#comentaires').append('<div id="border" class="bordered_1px"></div>');
-$('#error').hide();
-}
-}).catch(function (error) {
-console.log(error);
-});
-});
-})();
-	</script>
+hotelMarkers.push(hotelMarker);
+				</script>
+				{% endfor%}
 
-{% endblock %}
+				{% for campingMarker in campingMarkers %}
+					<script>
+						var campingMarker = {
+position: {
+lat: {{ campingMarker.lat }},
+lng: {{ campingMarker.lng }}
+},
+title: "{{ campingMarker.name | replace({' ': '_'}) }}"
+};
+campingMarkers.push(campingMarker);
+					</script>
+					{% endfor%}
+
+					{% for activiteMarker in activiteMarkers %}
+						<script>
+							var activiteMarker = {
+position: {
+lat: {{ activiteMarker.lat }},
+lng: {{ activiteMarker.lng }}
+},
+title: "{{ activiteMarker.name | replace({' ': '_'}) }}"
+};
+activiteMarkers.push(activiteMarker);
+						</script>
+						{% endfor%}
+
+						{% for restoMarker in restoMarkers %}
+							<script>
+								var restoMarker = {
+position: {
+lat: {{ restoMarker.lat }},
+lng: {{ restoMarker.lng }}
+},
+title: "{{ restoMarker.name | replace({' ': '_'}) }}"
+};
+restoMarkers.push(restoMarker);
+							</script>
+							{% endfor%}
+
+							<script>
+								function initMap() {
+var uluru = {
+lat: {{ villeMarker.lat }},
+lng: {{ villeMarker.lng }}
+};
+var map = new google.maps.Map(document.getElementById('map'), {
+zoom: 13,
+center: uluru,
+scrollwheel: true, /*mapTypeId: 'satellite'*/
+mapTypeId: google.maps.MapTypeId.ROADMAP
+});
+var marker = new google.maps.Marker({
+position: uluru, map: map, clickable: true, animation: google.maps.Animation.BOUNCE /*DROP*/
+});
+marker.setTitle("cmnt");
+marker.addListener('click', function () {
+$('html,body').animate({
+scrollTop: $("#" + marker.getTitle()).offset().top
+}, 'slow');
+});
+var markers = [];
+for (let i = 0; i < hotelMarkers.length; i++) {
+var mh = new google.maps.Marker({
+position: hotelMarkers[i].position, map: map,
+// label: "H",
+icon: {
+url: '{{ asset("img/marker_icon/hotel_50.png") }}'
+}
+});
+mh.setTitle(hotelMarkers[i].title);
+markers.push(mh);
+}
+for (let i = 0; i < restoMarkers.length; i++) {
+var mr = new google.maps.Marker({
+position: restoMarkers[i].position, map: map,
+// label: "R"
+icon: '{{ asset("img/marker_icon/resto_50.png") }}'
+});
+mr.setTitle(restoMarkers[i].title);
+markers.push(mr);
+}
+for (let i = 0; i < campingMarkers.length; i++) {
+var mc = new google.maps.Marker({position: campingMarkers[i].position, map: map, icon: '{{ asset("img/marker_icon/tent50.png") }}'});
+mc.setTitle(campingMarkers[i].title);
+markers.push(mc);
+}
+for (let i = 0; i < activiteMarkers.length; i++) {
+var ma = new google.maps.Marker({position: activiteMarkers[i].position, map: map, icon: '{{ asset("img/marker_icon/activite50.png") }}'});
+ma.setTitle(activiteMarkers[i].title);
+markers.push(ma);
+}
+var infowindow = new google.maps.InfoWindow();
+markers.map((m) => {
+m.addListener('click', function () {
+$('html,body').animate({
+scrollTop: $("#" + m.getTitle()).offset().top
+}, 'slow');
+$("#" + m.getTitle()).hide(1100);
+$("#" + m.getTitle()).show(2000);
+// $("#" + m.getTitle()).animate({height: '+=20%'});
+});
+m.addListener('mouseover', function () {
+infowindow.setContent(m.getTitle());
+infowindow.open(map, m);
+});
+});
+$("#customControlValidation1").change(function () {
+if (this.checked) {
+markers.map((m) => {
+for (let i = 0; i < hotelMarkers.length; i++) {
+if (m.getTitle() == hotelMarkers[i].title) {
+m.setVisible(true);
+}
+}
+});
+} else {
+markers.map((m) => {
+for (let i = 0; i < hotelMarkers.length; i++) {
+if (m.getTitle() == hotelMarkers[i].title) {
+m.setVisible(false);
+}
+}
+});
+}
+});
+$("#customControlValidation3").change(function () {
+if (this.checked) {
+markers.map((m) => {
+for (let i = 0; i < activiteMarkers.length; i++) {
+if (m.getTitle() == activiteMarkers[i].title) {
+m.setVisible(true);
+}
+}
+});
+} else {
+markers.map((m) => {
+for (let i = 0; i < activiteMarkers.length; i++) {
+if (m.getTitle() == activiteMarkers[i].title) {
+m.setVisible(false);
+}
+}
+});
+}
+});
+$("#customControlValidation2").change(function () {
+if (this.checked) {
+markers.map((m) => {
+for (let i = 0; i < restoMarkers.length; i++) {
+if (m.getTitle() == restoMarkers[i].title) {
+m.setVisible(true);
+}
+}
+});
+} else {
+markers.map((m) => {
+for (let i = 0; i < restoMarkers.length; i++) {
+if (m.getTitle() == restoMarkers[i].title) {
+m.setVisible(false);
+}
+}
+});
+}
+});
+$("#customControlValidation4").change(function () {
+if (this.checked) {
+markers.map((m) => {
+for (let i = 0; i < campingMarkers.length; i++) {
+if (m.getTitle() == campingMarkers[i].title) {
+m.setVisible(true);
+}
+}
+});
+} else {
+markers.map((m) => {
+for (let i = 0; i < campingMarkers.length; i++) {
+if (m.getTitle() == campingMarkers[i].title) {
+m.setVisible(false);
+}
+}
+});
+}
+});
+}
+							</script>
+
+							<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmC9pqdr3_Wbb9jGSl9EBKNNNAhcA6puE&callback=initMap"></script>
+
+						</div>
+					</div>
+
+					<!-- end description-->
+
+					<!-- Start meteo -->
+					<style type="text/css">
+						@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+						{
+							# html,
+							body {
+								background-color: #F3F3F3;
+								font-family: 'Roboto', sans-serif;
+							} #
+						}
+						.card {
+							margin: 5% auto 0;
+							padding: 5px 30px;
+							height: 470px;
+							border-radius: 3px;
+							background-color: #fff;
+							box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
+							-webkit-animation: open 2s cubic-bezier(0.39, 0, 0.38, 1);
+						}
+						@-webkit-keyframes open {
+							from {
+								padding: 0 30px;
+								height: 0;
+							}
+							to {
+								height: 470px;
+							}
+						}
+						h1,
+						h2,
+						h3,
+						h4 {
+							position: relative;
+						}
+						.dot {
+							font-size: 0.9em;
+						}
+						.sky {
+							position: relative;
+							margin-top: 108px;
+							width: 100px;
+							height: 100px;
+							border-radius: 50%;
+							background-color: #03A9F4;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.2s;
+						}
+						.sun {
+							position: relative;
+							top: -3px;
+							width: 55px;
+							height: 55px;
+							border-radius: 50%;
+							background-color: #FFEB3B;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.5s;
+						}
+						.cloud {
+							position: absolute;
+							top: 60px;
+							left: 30px;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.7s;
+						}
+						.cloud:before,
+						.cloud:after {
+							position: absolute;
+							display: block;
+							content: "";
+						}
+						.cloud:before {
+							margin-left: -10px;
+							width: 51px;
+							height: 18px;
+							background: #fff;
+						}
+						.cloud:after {
+							position: absolute;
+							top: -10px;
+							left: -22px;
+							width: 28px;
+							height: 28px;
+							border-radius: 50%;
+							background: #fff;
+							box-shadow: 50px -6px 0 6px #fff, 25px -19px 0 10px #fff;
+						}
+						table {
+							position: relative;
+							top: 10px;
+							width: 100%;
+							text-align: center;
+						}
+						tr:nth-child(1) td:nth-child(1),
+						tr:nth-child(1) td:nth-child(2),
+						tr:nth-child(1) td:nth-child(3),
+						tr:nth-child(1) td:nth-child(4),
+						tr:nth-child(1) td:nth-child(5) {
+							padding-bottom: 32px;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.7s;
+						}
+						tr:nth-child(2) td:nth-child(1),
+						tr:nth-child(2) td:nth-child(2),
+						tr:nth-child(2) td:nth-child(3),
+						tr:nth-child(2) td:nth-child(4),
+						tr:nth-child(2) td:nth-child(5) {
+							padding-bottom: 7px;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.9s;
+						}
+						tr:nth-child(3) td:nth-child(1),
+						tr:nth-child(3) td:nth-child(2),
+						tr:nth-child(3) td:nth-child(3),
+						tr:nth-child(3) td:nth-child(4),
+						tr:nth-child(3) td:nth-child(5) {
+							padding-bottom: 7px;
+							-webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.9s;
+						}
+						tr:nth-child(2),
+						tr:nth-child(3) {
+							font-size: 0.9em;
+						}
+						tr:nth-child(3) {
+							color: #999;
+						}
+						@-webkit-keyframes up {
+							0% {
+								opacity: 0;
+								-webkit-transform: translateY(15px);
+							}
+							50% {
+								opacity: 0;
+								-webkit-transform: translateY(15px);
+							}
+							99% {
+								-webkit-animation-play-state: paused;
+							}
+							100% {
+								opacity: 1;
+							}
+						}
+					</style>
+					<div class="popular_places_area">
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-lg-6">
+									<div class="section_title text-center mb_70">
+										<h3>La Meteo</h3>
+									</div>
+								</div>
+							</div>
+							<div class="row justify-content-center">
+								<div class="col-lg-5">
+									<div class="card">
+
+										<h2 style="font-weight: 300; font-size: 2.25em; -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1); ">{{ville.name}}</h2>
+										<h3 id="day0" style="float: right; left: 240px; top: -47px; color: #777; font-weight: 400; font-size: 1em; -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.1s;"></h3>
+										<h3 style="float: left; margin-right: 33px; top: 0px; color: #777; font-weight: 400; font-size: 1em; -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.1s;" id="desc"></h3>
+										<h1 id="temp" style="float: right; color: #666; font-weight: 300; top: 32px; font-size: 6.59375em; line-height: 0.2em; -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.2s;">&deg;</h1>
+										<div id="sky"></div>
+										<table>
+											<tr>
+												<td id="day1"></td>
+												<td id="day2"></td>
+												<td id="day3"></td>
+												<td id="day4"></td>
+												<td id="day5"></td>
+											</tr>
+											<tr>
+												<td id="icond1"></td>
+												<td id="icond2"></td>
+												<td id="icond3"></td>
+												<td id="icond4"></td>
+												<td id="icond5"></td>
+											</tr>
+											<tr>
+												<td id="tempMaxd1"></td>
+												<td id="tempMaxd2"></td>
+												<td id="tempMaxd3"></td>
+												<td id="tempMaxd4"></td>
+												<td id="tempMaxd5"></td>
+											</tr>
+											<tr>
+												<td id="tempMind1"></td>
+												<td id="tempMind2"></td>
+												<td id="tempMind3"></td>
+												<td id="tempMind4"></td>
+												<td id="tempMind5"></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script>
+						var lat = {{ villeMarker.lat }};
+var lng = {{ villeMarker.lng }};
+fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lng + '&units=metric&appid=7215d0713dbd93f757a51b198da702cc').then(response => response.json()).then(data => {
+document.getElementById("temp").innerHTML = data.current.temp + '&deg;';
+document.getElementById("sky").innerHTML = '<img src=' + '{{ asset("img/weather/") }}' + data.daily[0].weather[0].icon + '.png' + '>';
+document.getElementById("desc").innerHTML = data.current.weather[0].description + '<span  id="wind" style="margin-left: 24px; color: #999; font-weight: 300;">Vent ' + data.current.wind_speed + 'm/s <span style="margin-left: 0;" class="dot">•</span> humidité ' + data.current.humidity + '%</span>';
+var date0 = new Date();
+let dateLocale0 = date0.toLocaleString('fr-FR', {
+weekday: 'long',
+year: 'numeric',
+month: 'long',
+day: 'numeric'
+});
+document.getElementById("day0").innerHTML = dateLocale0;
+for (var i = 1; i < 6; i++) {
+document.getElementById("tempMaxd" + i).innerHTML = data.daily[i].temp.max + '&deg;';
+document.getElementById("icond" + i).innerHTML = '<img style="width: 65px" src=' +'{{ asset("img/weather/") }}' + data.daily[i].weather[0].icon + '.png' + '>';
+document.getElementById("tempMind" + i).innerHTML = data.daily[i].temp.min + '&deg;';
+var date = new Date();
+date.setDate(new Date().getDate() + i);
+let dateLocale = date.toLocaleString('fr-FR', {
+weekday: 'long',
+year: 'numeric',
+month: 'long',
+day: 'numeric'
+});
+document.getElementById("day" + i).innerHTML = dateLocale.substr(0, 3).toUpperCase();
+}
+});
+					</script>
+
+					<!-- End meteo -->
+
+
+					{% if hotels is not empty  and hotelMarkers is not empty %}
+						<!-- start hotels-->
+						<div class="popular_places_area">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-6">
+										<div class="section_title text-center mb_70">
+											<h3>Hotels</h3>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									{% for marker in hotelMarkers %}
+										{% for hotel in  hotels%}
+											{% if marker.name | replace({' ': '_'}) == hotel.nom | replace({' ': '_'}) %}
+												<div id={{marker.name | replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+													<div class="single_place">
+														<div class="thumb">
+															<img width="400" height="340" src="{{asset('/img/hotel/' ~ hotel.imgPath )}}" alt={{hotel.nom}}>
+														</div>
+														<div class="place_info">
+															<a href="destination_details.html">
+																<h3>{{marker.name}}</h3>
+															</a>
+															<div class="rating_days d-flex justify-content-between">
+																<span class="d-flex justify-content-center align-items-center">
+																	<a href="{{path('hotel_like', {'id':hotel.id})}}" class="btn btn-link js-like-hotel">
+																		{% if app.user  and  hotel.isLikedByUser(app.user) %}
+																			<i class="fas fa-heart fa-7x"></i>
+																		{% else %}
+																			<i class="far fa-heart fa-7x"></i>
+																		{% endif %}
+																		<span class="js-liks-hotel">{{hotel.likes| length}}</span>
+																		<span class="js-label">J'aime</span>
+																	</a>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											{% endif %}
+										{% endfor %}
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					{% endif %}
+					<!-- end hotels-->
+
+					<!-- start Restaurants-->
+					{% if restos is not empty %}
+						<div class="popular_places_area">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-6">
+										<div class="section_title text-center mb_70">
+											<h3>Restaurants</h3>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									{% for marker in restoMarkers %}
+										{% for resto in  restos%}
+											{% if marker.name | replace({' ': '_'}) == resto.nom | replace({' ': '_'}) %}
+												<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+													<div class="single_place">
+														<div class="thumb">
+															<img style="width: 400px; height: 425px;" src="{{asset('/img/resto/' ~ resto.imgPath)}}" alt="resto.nom">
+														</div>
+														<div class="place_info">
+															<a href="destination_details.html">
+																<h3>{{marker.name}}</h3>
+															</a>
+															<div class="rating_days d-flex justify-content-between">
+																<span class="d-flex justify-content-center align-items-center">
+																	<a href="{{path('resto_like', {'id':resto.id})}}" class="btn btn-link js-like-resto">
+																		{% if app.user  and  resto.isLikedByUser(app.user) %}
+																			<i class="fas fa-heart fa-7x"></i>
+																		{% else %}
+																			<i class="far fa-heart fa-7x"></i>
+																		{% endif %}
+																		<span class="js-liks-resto">{{resto.likes| length}}</span>
+																		<span class="js-label">J'aime</span>
+																	</a>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											{% endif %}
+										{% endfor %}
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					{% endif %}
+					<!-- end Restaurants-->
+
+					<!-- start activite-->
+					{% if activites is not empty %}
+						<div class="popular_places_area">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-6">
+										<div class="section_title text-center mb_70">
+											<h3>Activités</h3>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									{% for marker in activiteMarkers %}
+										{% for activite in  activites %}
+											{% if marker.name | replace({' ': '_'}) == activite.nom | replace({' ': '_'}) %}
+												<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+													<div class="single_place">
+														<div class="thumb">
+															<img style="width: 400px; height: 425px;" src="{{asset('/img/activite/' ~ activite.imgPath)}}" alt="activite.nom">
+														</div>
+														<div class="place_info">
+															<a href="destination_details.html">
+																<h3>{{marker.name}}</h3>
+															</a>
+															<div class="rating_days d-flex justify-content-between">
+																<span class="d-flex justify-content-center align-items-center">
+																	<a href="{{path('activite_like', {'id':activite.id})}}" class="btn btn-link js-like-activite">
+																		{% if app.user  and  activite.isLikedByUser(app.user) %}
+																			<i class="fas fa-heart fa-7x"></i>
+																		{% else %}
+																			<i class="far fa-heart fa-7x"></i>
+																		{% endif %}
+																		<span class="js-liks-activite">{{activite.likes| length}}</span>
+																		<span class="js-label">J'aime</span>
+																	</a>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											{% endif %}
+										{% endfor %}
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+
+					{% endif %}
+					<!-- end Restaurants-->
+
+					<!-- start campings-->
+					{% if campings is not empty %}
+						<div class="popular_places_area">
+							<div class="container">
+								<div class="row justify-content-center">
+									<div class="col-lg-6">
+										<div class="section_title text-center mb_70">
+											<h3>Campings</h3>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									{% for marker in campingMarkers %}
+										{% for camping in  campings %}
+											{% if marker.name | replace({' ': '_'}) == camping.nom | replace({' ': '_'}) %}
+												<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+													<div class="single_place">
+														<div class="thumb">
+															<img style="width: 400px; height: 425px;" src="{{asset('/img/camping/' ~ camping.imgPath)}}" alt="camping.nom">
+														</div>
+														<div class="place_info">
+															<a href="destination_details.html">
+																<h3>{{marker.name}}</h3>
+															</a>
+															<div class="rating_days d-flex justify-content-between">
+																<span class="d-flex justify-content-center align-items-center">
+																	<a href="{{path('camping_like', {'id':camping.id})}}" class="btn btn-link js-like-camping">
+																		{% if app.user  and  camping.isLikedByUser(app.user) %}
+																			<i class="fas fa-heart fa-7x"></i>
+																		{% else %}
+																			<i class="far fa-heart fa-7x"></i>
+																		{% endif %}
+																		<span class="js-liks-camping">{{camping.likes| length}}</span>
+																		<span class="js-label">J'aime</span>
+																	</a>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											{% endif %}
+										{% endfor %}
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					{% endif %}
+					<!-- start comntaire-->
+
+					<div id="cmnt" class="destination_details_info ">
+						<div class="container">
+							<div class="section_title text-center mb_70">
+								<h3>Comentaires</h3>
+							</div>
+							<div class="row justify-content-center">
+								<div class="col-lg-8 col-md-9 col-lg-12 ">
+									<div class="destination_info" id="comentaires">
+										{% for comentaire in comentaires %}
+											<h4>{{comentaire.user.nom }}
+												{{comentaire.user.prenom }}</h4>
+											<p>{{comentaire.comentaire}}</p>
+											{% if comentaire.image is not  null %}
+												<div class="container">
+													<img style="height:200px; width:200px ;" src="{{asset('img/comentaire/' ~ comentaire.image)}}">
+												</div>
+											{% endif %}
+											<div id="border" class="bordered_1px"></div>
+
+										{% endfor %}
+									</div>
+								</div>
+								<div id="Ali" class="bordered_1px"></div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="newletter_area overlay">
+						<div class="container  d-flex justify-content-center">
+							<div class="row align-items-center">
+								<div class="row align-items-center">
+									<form class="AjaxForm" action="{{path('comentaire')}}" method="post" enctype="multipart/form-data">
+										<div class="col-lg-12">
+											<div class="single_input">
+												<textarea name="" id="comentaire" cols="30" rows="7" placeholder=" votre comentaire"></textarea>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<input name="ville" id="ville" type="hidden" value="{{ville.id}}">
+										</div>
+										<div class="col-lg-12">
+
+											{%  if app.user %}
+												<div class="custom-file">
+													<input type="file" class="custom-file-input" id="customFile" accept="image/png, image/jpeg">
+													<label class="custom-file-label" for="customFile">
+														la  photo choisi</label>
+													<br><br>
+												</div>
+
+												<div class="newsletter_btn">
+													<button class="boxed-btn4 " type="submit">Envoyer<i class="fa fa-send fa-tw cont-send"></i>
+													</button>
+												</div>
+											{% else %}
+
+												<div class="newsletter_text">
+													<p>Pour faire un commentaire,  vous devez
+														<br>
+														être connecté ,
+														<button type="button" class="btn btn-secondary">
+															<a href="{{path('comentaire')}}">
+																ici</a>
+														</button>
+													</p>
+												</div>
+
+											{% endif %}
+										</div>
+									</form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<br><br><br>
+
+					<!-- end comntaire-->
+	{% endblock %}
+
+							{% block javascripts %}
+							   <script src="{{asset('js/like_hotel_camping_activite_resto_ajax.js')}}"></script>
+								<script src="{{asset('js/commentaire-ajax.js')}}"></script>
+								<script>
+									(function () {
+                         				        document.querySelector('.AjaxForm').addEventListener('submit', function (e) {
+        									     e.preventDefault();
+													var formD = new FormData()
+													formD.append('comentaire', $('#comentaire').val());
+													formD.append('ville', $('#ville').val());
+													formD.append('file', document.getElementById('customFile').files[0]);
+													var contentType = {
+													headers: {
+													"content-type": "multipart/form-data"
+													  }
+													};
+													axios.post($(".AjaxForm").attr('action'), formD, contentType)
+													   .then(function (response) {
+																	const $error = response.data.error;
+																	const newFilename = response.data.newFilename;
+																		if ($error == "empty" && newFilename == "empty") {
+																		$('#error').hide();
+																		$('#comentaires').append('<div id="error"class="alert alert-danger" role="alert"><strong>il faut remplir au moin un champ !!</strong>');
+																		} else {
+																				const comentaire = response.data.comentaire;
+																				const nom = response.data.nom;
+																				const prenom = response.data.prenom;
+																				$('#comentaires').append("<h4>" + nom + " " + prenom + "</h4>");
+																				if ($error != "empty") {
+																				$('#comentaires').append("<p>" + comentaire + "</h>");
+																				$('#comentaire').val("");
+																				}
+																		if (newFilename != "empty") {
+																		const assetsBaseDir = "{{ asset('img/comentaire/') }}";
+																		$('#comentaires').append('<div class="container"><img style="height:200px; width:200px ;" src="' + assetsBaseDir + newFilename + '"></div>');
+																		}
+																		$('#comentaires').append('<div id="border" class="bordered_1px"></div>');
+																		$('#error').hide();
+																		}
+																	}).catch(function (error) {
+																	console.log(error);
+																	});
+																	});
+												})();
+								</script>
+
+							{% endblock %}

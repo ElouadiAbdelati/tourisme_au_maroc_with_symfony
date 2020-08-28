@@ -74,7 +74,7 @@
 								<a href="{{path('destination_details', {'name':ville.name})}}">
 									<h3>{{ville.name}}</h3>
 								</a>
-								<div class="rating_days d-flex justify-content-between"   >
+								<div class="rating_days d-flex justify-content-between">
 									<span class="d-flex justify-content-center align-items-center">
 										<a href="{{path('ville_like', {'id':ville.id})}}" class="btn btn-link js-like">
 											{% if app.user  and  ville.isLikedByUser(app.user) %}
@@ -115,40 +115,39 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-
+			<div class="row ">
 				<div class="col-lg-4 col-md-6">
 					<div class="single_travel text-center">
-						<div class="icon">
+						 
 							<i class="fas fa-swimmer  fa-4x" style="color:red"></i>
-						</div>
+						 
 						<h3>Activités</h3>
 						<p>Découvrez les activités existantes</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="single_travel text-center">
-						<div class="icon">
+						 
 							<i class="fas fa-hotel fa-4x" style="color:red"></i>
-						</div>
+						 
 						<h3>Hôtels</h3>
 						<p>Trouvez votre hôtel au Maroc .</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="single_travel text-center">
-						<div class="icon">
+						
 							<i class="fas fa-concierge-bell fa-4x" style="color:red"></i>
-						</div>
+						 
 						<h3>Restaurants</h3>
 						<p>Trouvez votre restaurant au Maroc.</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="single_travel text-center">
-						<div class="icon">
+						 
 							<i class="fas fa-campground fa-4x" style="color:red"></i>
-						</div>
+						 
 						<h3>Campings</h3>
 						<p>Trouvez un camping au Maroc .</p>
 					</div>
@@ -159,4 +158,3 @@
 
 
 {% endblock %}
- 
