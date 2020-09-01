@@ -26,21 +26,7 @@
 		<div class="container">
 			<div class="d-none d-sm-block mb-5 pb-4">
 				<div id="map" style="height: 480px; position: relative; overflow: hidden;"></div>
-				<script>
-					function initMap() {
-var uluru = {
-lat: 31.669746,
-lng: -7.973328
-};
-var map = new google.maps.Map(document.getElementById('map'), {
-center: uluru,
-zoom: 10,
-scrollwheel: false
-});
-var marker = new google.maps.Marker({position: uluru, map: map});
-marker.setTitle("Marrakech");
-}
-				</script>
+				<script src="{{ asset('js/map-contact.js') }}"></script>
 				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&amp;callback=initMap"></script>
 
 			</div>

@@ -28,11 +28,6 @@ class Activite
      */
     private $type;
 
-    // /**
-    //  * @ORM\OneToOne(targetEntity=Marker::class)
-    //  */
-    // private $marker;
-
     /**
      * @ORM\Column(type="string", length=150)
      * @var string
@@ -42,7 +37,7 @@ class Activite
     /**
      * @ORM\Column(type="string", length=80)
      */
-    private $nom;
+    private $nom;//libelle
 
     /**
      * @ORM\ManyToOne(targetEntity="Ville", inversedBy="activites")

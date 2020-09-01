@@ -48,6 +48,342 @@
 		</div>
 	</div>
 
+	{% if hotels is not empty  and hotelMarkers is not empty %}
+		<!-- start hotels-->
+		<div class="popular_places_area">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6">
+						<div class="section_title text-center mb_70">
+							<h3>Hotels</h3>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					{% for marker in hotelMarkers %}
+						{% for hotel in  hotels%}
+							{% if marker.name | replace({' ': '_'}) == hotel.nom | replace({' ': '_'}) %}
+								<div id={{marker.name | replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+									<div class="single_place">
+										<div class="thumb">
+											<img width="400" height="340" src="{{asset('/img/hotel/' ~ hotel.imgPath )}}" alt={{hotel.nom}}>
+										</div>
+										<div class="place_info">
+											<a href="destination_details.html">
+												<h3>{{marker.name}}</h3>
+											</a>
+											<div class="rating_days d-flex justify-content-between">
+												<span class="d-flex justify-content-center align-items-center">
+													<a href="{{path('hotel_like', {'id':hotel.id})}}" class="btn btn-link js-like-hotel">
+														{% if app.user  and  hotel.isLikedByUser(app.user) %}
+															<i class="fas fa-heart fa-7x"></i>
+														{% else %}
+															<i class="far fa-heart fa-7x"></i>
+														{% endif %}
+														<span class="js-liks-hotel">{{hotel.likes| length}}</span>
+														<span class="js-label">J'aime</span>
+													</a>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	<!-- end hotels-->
+
+	<!-- start Restaurants-->
+	{% if restos is not empty %}
+		<div class="popular_places_area">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6">
+						<div class="section_title text-center mb_70">
+							<h3>Restaurants</h3>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					{% for marker in restoMarkers %}
+						{% for resto in  restos%}
+							{% if marker.name | replace({' ': '_'}) == resto.nom | replace({' ': '_'}) %}
+								<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+									<div class="single_place">
+										<div class="thumb">
+											<img style="width: 400px; height: 425px;" src="{{asset('/img/resto/' ~ resto.imgPath)}}" alt="resto.nom">
+										</div>
+										<div class="place_info">
+											<a href="destination_details.html">
+												<h3>{{marker.name}}</h3>
+											</a>
+											<div class="rating_days d-flex justify-content-between">
+												<span class="d-flex justify-content-center align-items-center">
+													<a href="{{path('resto_like', {'id':resto.id})}}" class="btn btn-link js-like-resto">
+														{% if app.user  and  resto.isLikedByUser(app.user) %}
+															<i class="fas fa-heart fa-7x"></i>
+														{% else %}
+															<i class="far fa-heart fa-7x"></i>
+														{% endif %}
+														<span class="js-liks-resto">{{resto.likes| length}}</span>
+														<span class="js-label">J'aime</span>
+													</a>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	<!-- end Restaurants-->
+
+	<!-- start activite-->
+	{% if activites is not empty %}
+		<div class="popular_places_area">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6">
+						<div class="section_title text-center mb_70">
+							<h3>Activités</h3>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					{% for marker in activiteMarkers %}
+						{% for activite in  activites %}
+							{% if marker.name | replace({' ': '_'}) == activite.nom | replace({' ': '_'}) %}
+								<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+									<div class="single_place">
+										<div class="thumb">
+											<img style="width: 400px; height: 425px;" src="{{asset('/img/activite/' ~ activite.imgPath)}}" alt="activite.nom">
+										</div>
+										<div class="place_info">
+											<a href="destination_details.html">
+												<h3>{{marker.name}}</h3>
+											</a>
+											<div class="rating_days d-flex justify-content-between">
+												<span class="d-flex justify-content-center align-items-center">
+													<a href="{{path('activite_like', {'id':activite.id})}}" class="btn btn-link js-like-activite">
+														{% if app.user  and  activite.isLikedByUser(app.user) %}
+															<i class="fas fa-heart fa-7x"></i>
+														{% else %}
+															<i class="far fa-heart fa-7x"></i>
+														{% endif %}
+														<span class="js-liks-activite">{{activite.likes| length}}</span>
+														<span class="js-label">J'aime</span>
+													</a>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+	{% endif %}
+	<!-- end Restaurants-->
+
+	<!-- start campings-->
+	{% if campings is not empty %}
+		<div class="popular_places_area">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6">
+						<div class="section_title text-center mb_70">
+							<h3>Campings</h3>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					{% for marker in campingMarkers %}
+						{% for camping in  campings %}
+							{% if marker.name | replace({' ': '_'}) == camping.nom | replace({' ': '_'}) %}
+								<div id={{marker.name| replace({' ': '_'} )}} class="col-lg-4 col-md-6">
+									<div class="single_place">
+										<div class="thumb">
+											<img style="width: 400px; height: 425px;" src="{{asset('/img/camping/' ~ camping.imgPath)}}" alt="camping.nom">
+										</div>
+										<div class="place_info">
+											<a href="destination_details.html">
+												<h3>{{marker.name}}</h3>
+											</a>
+											<div class="rating_days d-flex justify-content-between">
+												<span class="d-flex justify-content-center align-items-center">
+													<a href="{{path('camping_like', {'id':camping.id})}}" class="btn btn-link js-like-camping">
+														{% if app.user  and  camping.isLikedByUser(app.user) %}
+															<i class="fas fa-heart fa-7x"></i>
+														{% else %}
+															<i class="far fa-heart fa-7x"></i>
+														{% endif %}
+														<span class="js-liks-camping">{{camping.likes| length}}</span>
+														<span class="js-label">J'aime</span>
+													</a>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	<!-- start comntaire-->
+
+	
+
+	<div class="newletter_area overlay">
+		<div class="container  d-flex justify-content-center">
+			<div class="row align-items-center">
+				<div class="row align-items-center">
+					<form class="AjaxForm" action="{{path('comentaire')}}" method="post" enctype="multipart/form-data">
+						<div class="col-lg-12">
+							<div class="single_input">
+								<textarea name="" id="comentaire" cols="30" rows="7" placeholder=" votre comentaire"></textarea>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<input name="ville" id="ville" type="hidden" value="{{ville.id}}">
+						</div>
+						<div class="col-lg-12">
+
+							{%  if app.user %}
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" id="customFile" accept="image/png, image/jpeg">
+									<label class="custom-file-label" for="customFile">
+										la  photo choisi</label>
+									<br><br>
+								</div>
+
+								<div class="newsletter_btn">
+									<button class="boxed-btn4 " type="submit">Envoyer<i class="fa fa-send fa-tw cont-send"></i>
+									</button>
+								</div>
+							{% else %}
+
+								<div class="newsletter_text">
+									<p>Pour faire un commentaire,  vous devez
+										<br>
+										être connecté ,
+										<button type="button" class="btn btn-secondary">
+											<a href="{{path('comentaire')}}">
+												ici</a>
+										</button>
+									</p>
+								</div>
+
+							{% endif %}
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<br><br><br>
+
+	<!-- end comntaire-->
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{asset('js/like_hotel_camping_activite_resto_ajax.js')}}"></script>
+	<script src="{{asset('js/commentaire-ajax.js')}}"></script>
+	{# <script src="{{ asset('js/commentaire-destination-ajax.js') }}" > </script> #}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{# 
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DestinationDetailsController!
+{% endblock %}
+
+{% block body %}
+
+	{{ app.session.set('ville',ville.name)}}
+	{% set d = app.session.remove('destination') %}
+	{% set c =  app.session.remove('contact') %}
+	<div class="destination_banner_wrap overlay" style="background-image:url({{asset('/img/place/'~ ville.image)}});">
+		<div class="destination_text text-center">
+			<h3>{{ville.name | replace({'_': " "})}}</h3>
+			<span class="d-flex justify-content-center align-items-center">
+				<a href="{{path('ville_like', {'id':ville.id})}}" class="btn btn-link js-like">
+					{% if app.user  and  ville.isLikedByUser(app.user) %}
+						<i class="fas fa-heart fa-7x " style=" color: red;"></i>
+					{% else %}
+						<i class="far fa-heart fa-7x" style=" color: red;"></i>
+					{% endif %}
+
+				</a>
+			</span>
+		</div>
+	</div>
+	<!-- start description-->
+	<div class="destination_details_info">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 col-md-9">
+					<div class="destination_info">
+
+						<h3>Description</h3>
+						{{ville.description | raw}}
+					</div>
+					<div class="bordered_1px"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end description-->
+
+	<div class="row justify-content-center">
+		<div class="col-lg-6">
+			<div class="section_title text-center mb_70">
+				<h3>La carte</h3>
+			</div>
+		</div>
+	</div>
+
 
 	<!-- start map-->
 	<div class="container">
@@ -944,4 +1280,4 @@ document.getElementById("day" + i).innerHTML = dateLocale.substr(0, 3).toUpperCa
 												})();
 								</script>
 
-							{% endblock %}
+							{% endblock %} #}
