@@ -5,7 +5,9 @@
 		<title>
 			MghribNa!
 		</title>
-		{% block stylesheets %}{% endblock %}
+		{% block stylesheets %}
+		
+		{% endblock %}
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="description" content="">
@@ -35,166 +37,165 @@
 		<!-- header-start -->
 
 
-		
 		<header>
-				<div class="header-area ">
-					<div id="sticky-header" class="main-header-area">
-						<div class="container-fluid">
-							<div class="header_bottom_border">
-								<div class="row align-items-center">
-									<div class="col-xl-2 col-lg-2">
-										<div class="logo">
-											<a href="{{ path('home') }}">
-												<h2 style="color: red;">Mghrib<span style="color: green;">NA<span></h2>
-													</a>
-												</div>
-											</div>
-											<div class="col-xl-6 col-lg-6">
-												<div class="main-menu  d-none d-lg-block">
-													<nav>
-														<ul id="navigation">
-															<li>
-																<a class="active" href="{{path('home')}}">Accuiel</a>
-															</li>
-															<li>
-																<a class="" href="{{path('destination')}}">Destination</a>
-															</li>
-															<li>
-																<a href="{{path('blog')}}">
-																	Blog
-																</a>
-															</li>
-															<li>
-																<a href="{{ path('contact') }}">Contact</a>
-															</li>
-														</ul>
-													</nav>
-												</div>
-											</div>
-											<div class="col-xl-4 col-lg-4 d-none d-lg-block">
-												<div class="social_wrap d-flex align-items-center justify-content-end">
-													<div class="number">
-														<p>
-															<i class="fa fa-phone"></i>
-															+212 600-000000</p>
-													</div>
-													<div class="social_links d-none d-xl-block">
-														<ul>
-															<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-															<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-															<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-															<li><a href="#"><i class="fab fa-google"></i></a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="seach_icon">
-												<a href="{{path('app_login')}}">
-													<i class="fa fa-sign-in fa-7x "></i>
+			<div class="header-area ">
+				<div id="sticky-header" class="main-header-area">
+					<div class="container-fluid">
+						<div class="header_bottom_border">
+							<div class="row align-items-center">
+								<div class="col-xl-2 col-lg-2">
+									<div class="logo">
+										<a href="{{ path('home') }}">
+											<h2 style="color: red;">Mghrib<span style="color: green;">NA<span></h2>
 												</a>
 											</div>
-											<div class="col-12">
-												<div class="mobile_menu d-block d-lg-none"></div>
+										</div>
+										<div class="col-xl-6 col-lg-6">
+											<div class="main-menu  d-none d-lg-block">
+												<nav>
+													<ul id="navigation">
+														<li>
+															<a class="active" href="{{path('home')}}">Accuiel</a>
+														</li>
+														<li>
+															<a class="" href="{{path('destination')}}">Destination</a>
+														</li>
+														<li>
+															<a href="{{path('blog')}}">
+																Blog
+															</a>
+														</li>
+														<li>
+															<a href="{{ path('contact') }}">Contact</a>
+														</li>
+													</ul>
+												</nav>
 											</div>
 										</div>
+										<div class="col-xl-4 col-lg-4 d-none d-lg-block">
+											<div class="social_wrap d-flex align-items-center justify-content-end">
+												<div class="number">
+													<p>
+														<i class="fa fa-phone"></i>
+														+212 600-000000</p>
+												</div>
+												<div class="social_links d-none d-xl-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+														<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-google"></i></a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="seach_icon">
+											<a href="{{path('app_login')}}">
+												<i class="fa fa-sign-in fa-7x "></i>
+											</a>
+										</div>
+										<div class="col-12">
+											<div class="mobile_menu d-block d-lg-none"></div>
+										</div>
 									</div>
-
 								</div>
+
 							</div>
 						</div>
 					</div>
 				</div>
-			</header>
-		<div id="main">
-		<div id="mySidebar" class="sidebar">
-
-			<a id="close_covid" href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-
-			<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-			<h1 id='title' class="title">Novel Coronavirus (COVID-19) Live Tracker Morocco</h1>
-			<div
-				class="container-bar">
-				<!-- Card stats -->
-				<div
-					class="card-covid card-starts">
-					<!-- Card body -->
-					<div class="card-body">
-						<div class="col">
-							<h5 class="card-title text-uppercase text-muted">Cas Confirmés</h5>
-							<span id='total-cases' class="h2 font-weight-bold total_cases color-red count">0</span>
-						</div>
-						<div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-							<i class="fas fa-users"></i>
-						</div>
-					</div>
-				</div>
-				<div
-					class="card-covid card-stats">
-					<!-- Card body -->
-					<div class="card-body">
-						<div class="col">
-							<h5 class="card-title text-uppercase text-muted">Décès</h5>
-							<span id='deaths' class="h2 font-weight-bold deaths color-blue count">0</span>
-						</div>
-						<div class="icon icon-shape bg-gradient-blue text-white rounded-circle shadow">
-							<i class="fas fa-procedures"></i>
-						</div>
-					</div>
-				</div>
-				<div
-					class="card-covid card-stats">
-					<!-- Card body -->
-					<div class="card-body">
-						<div class="col">
-							<h5 class="card-title text-uppercase text-muted">Guéris</h5>
-							<span id='recovered' class="h2 font-weight-bold recovered color-green count">0</span>
-						</div>
-						<div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-							<i class="fas fa-child"></i>
-						</div>
-					</div>
-				</div>
-				<div
-					class="card-covid card-stats">
-					<!-- Card body -->
-					<div class="card-body">
-						<div class="col">
-							<h5 class="card-title text-uppercase text-muted">Nouveaux cas</h5>
-							<span id='new-cases' class="h2 font-weight-bold new_cases color-orange count">0</span>
-						</div>
-						<div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-							<i class="fas fa-bell"></i>
-						</div>
-					</div>
-				</div>
 			</div>
-			{# <!-- Card body -->
-												    <div class="card-body">
-												      <div class="col">
-												        <h5 class="card-title text-uppercase text-muted">Nouveaux Guéris</h5>
-												        <span id='new-recovered' class="h2 font-weight-bold new_cases color-orange count">0</span>
-												      </div>
-												      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-												        <i class="fas fa-bell"></i>
-												      </div>
-												    </div>
-												  </div>
-												</div> #}
-
-			{% if app.request.attributes.get('_route') == "destination_details"  %}
-				<script src="{{ asset('js/covid-19-dest-details.js') }}"></script> 
+		</header>
+		{% if app.request.attributes.get('_route') == "destination_details"  %}
+				<script>
+					var region = "{{ ville.region.nom }}";
+				</script> 
+				<script src="{{ asset('js/covid-19-dest-details.js') }}">
+				var region = "{{ ville.region.nom }}";
+				</script> 
 			{% else %}
 				<script src="{{ asset('js/covid-19.js') }}"></script>
 			{% endif %}
+		<div id="main">
+			<div id="mySidebar" class="sidebar">
+
+				<a id="close_covid" href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+				<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+				<h1 id='title' class="title">Novel Coronavirus (COVID-19) Live Tracker Morocco</h1>
+				<div
+					class="container-bar">
+					<!-- Card stats -->
+					<div
+						class="card-covid card-starts">
+						<!-- Card body -->
+						<div class="card-body">
+							<div class="col">
+								<h5 class="card-title text-uppercase text-muted">Cas Confirmés</h5>
+								<span id='total-cases' class="h2 font-weight-bold total_cases color-red count">0</span>
+							</div>
+							<div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+								<i class="fas fa-users"></i>
+							</div>
+						</div>
+					</div>
+					<div
+						class="card-covid card-stats">
+						<!-- Card body -->
+						<div class="card-body">
+							<div class="col">
+								<h5 class="card-title text-uppercase text-muted">Décès</h5>
+								<span id='deaths' class="h2 font-weight-bold deaths color-blue count">0</span>
+							</div>
+							<div class="icon icon-shape bg-gradient-blue text-white rounded-circle shadow">
+								<i class="fas fa-procedures"></i>
+							</div>
+						</div>
+						<h6 class="text-muted"> &ensp; Nouveaux Décès :<span id='new-death' class="h6 font-weight-bold recovered">0</span></h6>
+					</div>
+					<div
+						class="card-covid card-stats">
+						<!-- Card body -->
+						<div class="card-body">
+							<div class="col">
+								<h5 class="card-title text-uppercase text-muted">Guéris</h5>
+								<span id='recovered' class="h2 font-weight-bold recovered color-green count">0</span>
+							</div>
+							<div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+								<i class="fas fa-child"></i>
+							</div>
+						</div>
+							<div>
+								<h6 class="text-muted"> &ensp; Nouveaux Guéris :<span id='new-recovered' class="h6 font-weight-bold recovered">0</span></h6>
+							</div>
+					</div>
+					<div
+						class="card-covid card-stats">
+						<!-- Card body -->
+						<div class="card-body">
+							<div class="col">
+								<h5 class="card-title text-uppercase text-muted">Nouveaux cas</h5>
+								<span id='new-cases' class="h2 font-weight-bold new_cases color-orange count">0</span>
+							</div>
+							<div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+								<i class="fas fa-bell"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			
 
 
-		</div>
-			<button id='covid' class="openbtn" onclick="openNav()" width="10">
+
+			</div>
+			<button id='covid' class="openbtn" width="10">
 				<img src='{{asset("img/covid-19/covid.png")}}' alt="covid" width="50" height="50">
 				<br>
 				Covid-19
 			</button>
-			<!-- header-end -->{% block body %}{% endblock %}
+			<!-- header-end -->
+			{% block body %}{% endblock %}
 			<footer class="footer">
 				<div class="footer_top">
 					<div class="container">
@@ -306,7 +307,22 @@
 			<script src="{{ asset('js/main.js')}}"></script>
 			<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 			<script src="{{ asset('js/ajax.js')}}"></script>
-			{% block javascripts %}{% endblock %}
+		<script>
+			
+		
+		</script>
 		<script src="{{asset('js/covid-19-animation.js')}}"></script>
+		{# var region = "{{ ville.region.nom }}";
+		fetch('https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=RegionFr%20%3D%20%27' + region + '%27&outFields=*&returnGeometry=false&outSR=4326&f=json').then(response => response.json()).then(data => {
+                        console.log(data);
+                        document.getElementById('title').innerHTML = "L'état sanitaire dans la région de " + data.features[0].attributes.Nom_Région_FR + ' ' + data.features[0].attributes.Nom_Région_AR;
+                        
+                        document.getElementById('total-cases').innerHTML = data.features[0].attributes.Cases;
+						document.getElementById('deaths').innerHTML = data.features[0].attributes.Deaths;
+						document.getElementById('recovered').innerHTML = data.features[0].attributes.Recoveries;
+						document.getElementById('new-cases').innerHTML = 0;
+						}); #}
+
+		
 	</body>
-</html> 
+</html>
