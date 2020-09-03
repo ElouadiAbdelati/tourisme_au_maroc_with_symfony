@@ -25,7 +25,7 @@ class DestinationController extends AbstractController
     {    
         $villes = $villeRepository->findAll();
        
-        $regions=$regionRepository->findAll();
+        $regions=$regionRepository->findRegionsNotEmpty();
         foreach ($regions as $region){
            $vs=$villeRepository->findBy(array('region'=>$region));
            foreach($vs as $v){

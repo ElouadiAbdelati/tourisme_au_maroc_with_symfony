@@ -1,11 +1,7 @@
  (function() {
-
-
      //start filer ville
-
      document.querySelector('.chatAjaxForm').addEventListener('submit', function(e) {
          e.preventDefault();
-
          axios.post($(".chatAjaxForm").attr('action'), { idResion: $('#region').val() })
              .then(function(response) {
                  const villes = response.data.villes;

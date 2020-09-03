@@ -47,4 +47,14 @@ class RegionRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findRegionsNotEmpty()
+    {
+        return $this->createQueryBuilder('r')
+            ->join('App\Entity\Ville','v')
+            ->where('r.id = v.region')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
