@@ -5,9 +5,7 @@
 		<title>
 			MghribNa!
 		</title>
-		{% block stylesheets %}
-		
-		{% endblock %}
+		{% block stylesheets %}{% endblock %}
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="description" content="">
@@ -107,15 +105,15 @@
 			</div>
 		</header>
 		{% if app.request.attributes.get('_route') == "destination_details"  %}
-				<script>
-					var region = "{{ ville.region.nom }}";
-				</script> 
-				<script src="{{ asset('js/covid-19-dest-details.js') }}">
+			<script>
 				var region = "{{ ville.region.nom }}";
-				</script> 
-			{% else %}
-				<script src="{{ asset('js/covid-19.js') }}"></script>
-			{% endif %}
+			</script>
+			<script src="{{ asset('js/covid-19-dest-details.js') }}">
+				var region = "{{ ville.region.nom }}";
+			</script>
+		{% else %}
+			<script src="{{ asset('js/covid-19.js') }}"></script>
+		{% endif %}
 		<div id="main">
 			<div id="mySidebar" class="sidebar">
 
@@ -151,7 +149,9 @@
 								<i class="fas fa-procedures"></i>
 							</div>
 						</div>
-						<h6 class="text-muted"> &ensp; Nouveaux Décès :<span id='new-death' class="h6 font-weight-bold recovered">0</span></h6>
+						<h6 class="text-muted">
+							&ensp; Nouveaux Décès :<span id='new-death' class="h6 font-weight-bold recovered">0</span>
+						</h6>
 					</div>
 					<div
 						class="card-covid card-stats">
@@ -165,9 +165,11 @@
 								<i class="fas fa-child"></i>
 							</div>
 						</div>
-							<div>
-								<h6 class="text-muted"> &ensp; Nouveaux Guéris :<span id='new-recovered' class="h6 font-weight-bold recovered">0</span></h6>
-							</div>
+						<div>
+							<h6 class="text-muted">
+								&ensp; Nouveaux Guéris :<span id='new-recovered' class="h6 font-weight-bold recovered">0</span>
+							</h6>
+						</div>
 					</div>
 					<div
 						class="card-covid card-stats">
@@ -183,9 +185,6 @@
 						</div>
 					</div>
 				</div>
-
-			
-
 
 
 			</div>
@@ -296,33 +295,30 @@
 			</footer>
 		</div>
 		<!-- JS here -->
-	 	<script src="{{ asset('js/vendor/modernizr-3.5.0.min.js')}}"></script>
-			<script src="{{ asset('js/vendor/jquery-1.12.4.min.js')}}"></script>
-			<script src="{{ asset('js/popper.min.js')}}"></script>
-			<script src="{{ asset('js/bootstrap.min.js')}}"></script>
-			<script src="{{ asset('js/owl.carousel.min.js')}}"></script>
-			<script src="{{ asset('js/wow.min.js')}}"></script>
-			<script src="{{ asset('js/jquery.slicknav.min.js')}}"></script>
-			<script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
-			<script src="{{ asset('js/main.js')}}"></script>
-			<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-			<script src="{{ asset('js/ajax.js')}}"></script>
-		<script>
-			
-		
-		</script>
+		<script src="{{ asset('js/vendor/modernizr-3.5.0.min.js')}}"></script>
+		<script src="{{ asset('js/vendor/jquery-1.12.4.min.js')}}"></script>
+		<script src="{{ asset('js/popper.min.js')}}"></script>
+		<script src="{{ asset('js/bootstrap.min.js')}}"></script>
+		<script src="{{ asset('js/owl.carousel.min.js')}}"></script>
+		<script src="{{ asset('js/wow.min.js')}}"></script>
+		<script src="{{ asset('js/jquery.slicknav.min.js')}}"></script>
+		<script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
+		<script src="{{ asset('js/main.js')}}"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="{{ asset('js/ajax.js')}}"></script>
+		<script></script>
 		<script src="{{asset('js/covid-19-animation.js')}}"></script>
 		{# var region = "{{ ville.region.nom }}";
-		fetch('https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=RegionFr%20%3D%20%27' + region + '%27&outFields=*&returnGeometry=false&outSR=4326&f=json').then(response => response.json()).then(data => {
-                        console.log(data);
-                        document.getElementById('title').innerHTML = "L'état sanitaire dans la région de " + data.features[0].attributes.Nom_Région_FR + ' ' + data.features[0].attributes.Nom_Région_AR;
-                        
-                        document.getElementById('total-cases').innerHTML = data.features[0].attributes.Cases;
-						document.getElementById('deaths').innerHTML = data.features[0].attributes.Deaths;
-						document.getElementById('recovered').innerHTML = data.features[0].attributes.Recoveries;
-						document.getElementById('new-cases').innerHTML = 0;
-						}); #}
+				fetch('https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=RegionFr%20%3D%20%27' + region + '%27&outFields=*&returnGeometry=false&outSR=4326&f=json').then(response => response.json()).then(data => {
+		                        console.log(data);
+		                        document.getElementById('title').innerHTML = "L'état sanitaire dans la région de " + data.features[0].attributes.Nom_Région_FR + ' ' + data.features[0].attributes.Nom_Région_AR;
+		                        
+		                        document.getElementById('total-cases').innerHTML = data.features[0].attributes.Cases;
+								document.getElementById('deaths').innerHTML = data.features[0].attributes.Deaths;
+								document.getElementById('recovered').innerHTML = data.features[0].attributes.Recoveries;
+								document.getElementById('new-cases').innerHTML = 0;
+								}); #}
 
-		
+
 	</body>
 </html>

@@ -440,54 +440,53 @@ easy_admin:
 
 
 
-
     Blog:
-       class: App\Entity\Blog
-       label: 'blogs'
-       list:
-            collapse_actions: true 
-            actions: 
-                  - {name: 'show', label: 'Afficher', icon: "eye" }
-                  - {name: 'edit', label: 'Editer', icon: "pencil" }
-                  - {name: 'delete', label: 'Supprimer', icon: "trash"}
-            batch_actions: ['delete']
-            filters: ['title', 'published', 'createdAt', 'categorie', 'tags']  
-            title: "List des Lignes de commandes "
-            fields:
-                    - id
-                    - title
-                    - user
-                    - published
-                    - createdAt
-                    - categorie
-                    - { property: 'image', type: 'image',base_path: '/img/blog/'  }
-            form:
-                title: 'Ajouter un blog'
-                fields:
-                    - {type: 'group', icon: 'pencil', label : 'Informations', css_class: 'col-lg-7'  }            
-                    - title
-                    - user
-                    - {property: 'content', type: 'text_editor'}                  
-                    - published
-                    - createdAt
-                    - categorie
-                    - {type: 'group', icon: 'pencil', label : 'Autres informations', css_class: 'col-lg-7'  }              
-                    - { property: 'tags', type_options: { 'by_reference': false } }
-                    - {type: 'group', icon: 'upload', label : 'téléchargements', css_class: 'col-lg-5'  }            
-                    - { property: 'imgPathFile', type: 'vich_image' , label: 'Ajouter une photo'  }
-            edit:
-                title: 'Editer ce blog'
-            show:
-                title: 'Détails'
-                fields:
-                    - title
-                    - user
-                    - {property: 'content', type: 'raw'}
-                    - published
-                    - createdAt
-                    - categorie
-                    - tags 
-                    - { property: 'image', type: 'image',base_path: '/img/blog/'  }
+      class: App\Entity\Blog
+      label: 'blogs'
+      list:
+        collapse_actions: true 
+        actions: 
+          - {name: 'show', label: 'Afficher', icon: "eye" }
+          - {name: 'edit', label: 'Editer', icon: "pencil" }
+          - {name: 'delete', label: 'Supprimer', icon: "trash"}
+        batch_actions: ['delete']
+        filters: ['title', 'published', 'createdAt', 'categorie', 'tags']  
+        title: "List des Lignes de commandes "
+        fields:
+          - id
+          - title
+          - user
+          - published
+          - createdAt
+          - categorie
+          # - { property: 'image', type: 'image',base_path: '/img/blog/'  }
+          - {property: 'image', type: 'vich_image', label: "Image"}
+      form:
+        fields:
+          - {type: 'group', icon: 'pencil', label : 'Informations'  }            
+          - title
+          - user
+          - {property: 'content', type: 'text_editor'}                  
+          - published
+          - createdAt
+          - categorie
+          - {type: 'group', icon: 'pencil', label : 'Autres informations', css_class: 'col-lg-7'  }              
+          - { property: 'tags', type_options: { 'by_reference': false } }
+          - {type: 'group', icon: 'upload', label : 'téléchargements', css_class: 'col-lg-5'  }            
+          - {property: 'imgPathFile', type: 'vich_image', label: "Image"}
+        edit:
+          title: 'Editer ce blog'
+        show:
+          title: 'Détails'
+          fields:
+            - title
+            - user
+            - {property: 'content', type: 'raw'}
+            - published
+            - createdAt
+            - categorie
+            - tags 
+            - { property: 'image', type: 'image',base_path: '/img/blog/'  }
                    
         
     Tag: 

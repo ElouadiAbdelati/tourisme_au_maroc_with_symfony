@@ -62,58 +62,59 @@
 					</div>
 				</div>
 
-                {% if blog.commentaireBlogs is not empty %}
-				<div class="comments-area">
-					<h4>commentaires</h4>
-                    {% for commentaire in blog.commentaireBlogs %}
+				{% if blog.commentaireBlogs is not empty %}
+					<div class="comments-area">
+						<h4>commentaires</h4>
+						{% for commentaire in blog.commentaireBlogs %}
 
-					<div class="comment-list">
-						<div class="single-comment justify-content-between d-flex">
-							<div class="user justify-content-between d-flex">
-								<div class="desc">
-									<p class="comment">
-											{{commentaire.content}}									   
-									</p>
-									<div class="d-flex justify-content-between">
-										<div class="d-flex align-items-center">
-											<h5>
-												<h3> {{commentaire.name}}</h3>
-											</h5>
-											 
+							<div class="comment-list">
+								<div class="single-comment justify-content-between d-flex">
+									<div class="user justify-content-between d-flex">
+										<div class="desc">
+											<p class="comment">
+												{{commentaire.content}}
+											</p>
+											<div class="d-flex justify-content-between">
+												<div class="d-flex align-items-center">
+													<h5>
+														<h3>
+															{{commentaire.name}}</h3>
+													</h5>
+
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						{% endfor %}
 					</div>
-                    {% endfor %}
-				</div>
-                {% endif %}
+				{% endif %}
 				<div class="comment-form">
 					<h4>Laisser un commentaire</h4>
 					<div class="form-contact comment_form">
-                    {{ form_start(form) }}
+						{{ form_start(form) }}
 						<div class="row">
 							<div class="col-12">
 								<div class="form-group">
-                                    {{ form_widget(form.content, {'attr':{ 'class':'form-control w-100 ' ,'placeholder':"Ecrire commentaire"}}) }}
+									{{ form_widget(form.content, {'attr':{ 'class':'form-control w-100 ' ,'placeholder':"Ecrire commentaire"}}) }}
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
-                                   {{ form_widget(form.name, {'attr':{ 'class':'form-control  ' ,'placeholder':"Nom"}}) }}
+									{{ form_widget(form.name, {'attr':{ 'class':'form-control  ' ,'placeholder':"Nom"}}) }}
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
-                                      {{ form_widget(form.email, {'attr':{ 'class':'form-control  ' ,'placeholder':"Email"}}) }}
+									{{ form_widget(form.email, {'attr':{ 'class':'form-control  ' ,'placeholder':"Email"}}) }}
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="button button-contactForm btn_1 boxed-btn">Envoyer</button>
 						</div>
-                        {{ form_end(form) }}
+						{{ form_end(form) }}
 					</div>
 				</div>
 			</div>

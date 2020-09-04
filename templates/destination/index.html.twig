@@ -28,10 +28,9 @@
 		<script>
 			nameVilles.push("{{ ville.name }}");
 		</script>
-		<div class="js-user-rating" data-is-authenticated="{{ ville | json_encode | raw }}">
-     </div>
+		<div class="js-user-rating" data-is-authenticated="{{ ville | json_encode | raw }}"></div>
 	{% endfor %}
-     
+
 	<div class="popular_places_area">
 		<div class="container">
 			<div class="row">

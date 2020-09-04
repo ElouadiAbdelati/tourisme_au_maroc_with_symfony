@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=BlogRepository::class)
+ * @Vich\Uploadable
  */
 class Blog
 {
