@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
+{% block title %}Accuiel
 {% endblock %}
 
 {% block body %}
@@ -72,7 +72,7 @@
 							</div>
 							<div class="place_info">
 								<a href="{{path('destination_details', {'name':ville.name})}}">
-									<h3>{{ville.name}}</h3>
+									<h3>{{ville.name | replace({'_': " "}) }}</h3>
 								</a>
 								<div class="rating_days d-flex justify-content-between">
 									<span class="d-flex justify-content-center align-items-center">

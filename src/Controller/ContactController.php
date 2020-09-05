@@ -15,10 +15,11 @@ class ContactController extends AbstractController
      * @Route("/contact", name="contact")
      */
     public function index(Request $request)
-    {    $result="";
-        $data=$request->query->all();
+    {    $result = "";
+        $data = $request->query->all();
+
          if(isset($data['result'])){
-            $result=$data['result'];
+            $result = $data['result'];
          }
          
         return $this->render('contact/index.html.twig', [
@@ -30,17 +31,18 @@ class ContactController extends AbstractController
      * @Route("/email", name="send_email")
      */
     public function sendEmail(Request $request, ContactRepository $contactRepository, \Swift_Mailer $mailer)
-    {    $result="vide";
+    {    
+        $result="vide";
         $data = $request->request->all();
         $contact = new Contact();
-        $to = 'Eloudi_Abdelati@outlook.fr';
+        $to = 'mghribna@gmail.com';
         $contact->setTo($to);
         $contact->setCmessage($data['message']);
         $contact->setFrom($data['email']);
         $contact->setName($data['name']);
         $contact->setSubject($data['subject']);
         if (!empty($data['message']) && !empty($data['email']) && !empty($data['name']) && !empty($data['subject'])) {
-         
+        
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             //$entityManager->flush();

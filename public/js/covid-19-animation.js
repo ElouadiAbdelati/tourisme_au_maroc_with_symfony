@@ -1,4 +1,4 @@
-$('#covid').click(function () {
+$('#covid').click(function() {
     $('#close_covid').show();
     $('#mySidebar').animate({
         width: "300px"

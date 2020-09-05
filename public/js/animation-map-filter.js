@@ -7,18 +7,21 @@ function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
         center: uluru,
-        scrollwheel: true, /*mapTypeId: 'satellite'*/
+        scrollwheel: true, 
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     var marker = new google.maps.Marker({
         position: uluru, map: map, clickable: true, animation: google.maps.Animation.BOUNCE /*DROP*/
     });
+    
     marker.setTitle("cmnt");
+
     marker.addListener('click', function () {
         $('html,body').animate({
             scrollTop: $("#" + marker.getTitle()).offset().top
         }, 'slow');
     });
+
     var markers = [];
     for (let i = 0; i < hotelMarkers.length; i++) {
         var mh = new google.maps.Marker({

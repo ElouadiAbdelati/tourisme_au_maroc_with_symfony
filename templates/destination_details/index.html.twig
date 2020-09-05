@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DestinationDetailsController!
+{% block title %}Destination Details
 {% endblock %}
 
 {% block body %}
@@ -8,6 +8,7 @@
 	{{ app.session.set('ville',ville.name)}}
 	{% set d = app.session.remove('destination') %}
 	{% set c =  app.session.remove('contact') %}
+
 	<div class="destination_banner_wrap overlay" style="background-image:url({{asset('/img/place/'~ ville.image)}});">
 		<div class="destination_text text-center">
 			<h3>{{ville.name | replace({'_': " "})}}</h3>
@@ -52,6 +53,7 @@
 	<!-- start map-->
 	<div class="container">
 		<div class="d-none d-sm-block mb-5 pb-4">
+			<!-- map -->
 			<div id="map" style="height: 480px; width: 770px; position: relative;"></div>
 
 
@@ -135,7 +137,7 @@
 			<script language="JavaScript" type="text/javascript" src="/js/vendor/jquery-1.12.4.min.js"></script>
 
 			<script>
-				var hotelMarkers = [];
+var hotelMarkers = [];
 var campingMarkers = [];
 var restoMarkers = [];
 var activiteMarkers = [];
@@ -198,8 +200,9 @@ restoMarkers.push(restoMarker);
 
 
 			<script>
-				let lat = {{ villeMarker.lat }};
+let lat = {{ villeMarker.lat }};
 let lng = {{ villeMarker.lng }};
+let villeName = {{ villeMarker.name }};
 			</script>
 			<script src="{{ asset('js/animation-map-filter.js') }}"></script>
 			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmC9pqdr3_Wbb9jGSl9EBKNNNAhcA6puE&callback=initMap"></script>
@@ -511,7 +514,7 @@ let lng = {{ villeMarker.lng }};
 						</div>
 						<div class="col-lg-12">
 
-							{%  if app.user %}
+							{% if app.user %}
 								<div class="custom-file">
 									<input type="file" class="custom-file-input" id="customFile" accept="image/png, image/jpeg">
 									<label class="custom-file-label" for="customFile">

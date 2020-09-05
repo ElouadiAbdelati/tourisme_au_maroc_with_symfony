@@ -63,10 +63,12 @@ class DestinationDetailsController extends AbstractController
     $c = $request->request->get('comentaire');
     $ville = $request->request->get('ville');
     $file = $request->files->get('file');
-    $comentaire = new Comentaire();
-    $comentaire->setUser($this->getUser());
     $error ="empty";
     $newFilename ="empty";
+    
+    $comentaire = new Comentaire();
+    $comentaire->setUser($this->getUser());
+
     if (!empty($c) || !empty($file)) {
       $ville = $villeRepository->findOneBy(array('id' => $ville));
       $comentaire->setVille($ville);
@@ -80,10 +82,11 @@ class DestinationDetailsController extends AbstractController
         $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
         try {
           $file->move(
-            $this->getParameter('brochures_directory'),
-            $newFilename
+          $this->getParameter('brochures_directory'),
+          $newFilename
           );
         } catch (FileException $e) {
+          $error = $e;
         }
         $comentaire->setImage($newFilename);
       }

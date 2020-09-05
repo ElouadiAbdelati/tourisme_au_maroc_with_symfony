@@ -19,8 +19,8 @@ class BlogSingleController extends AbstractController
      * @Route("/blog/{id}", name="blog_single")
      */
    
-    public function index(Request $request,Blog $blog  ,TagRepository $tagRepository,
-                          CategorieRepository $categorieRepository)
+    public function index(Request $request, Blog $blog  ,TagRepository $tagRepository,
+    CategorieRepository $categorieRepository)
     {
         $commentaire = new CommentaireBlog();
         $form = $this->createForm(CommentaireBlogType::class, $commentaire);

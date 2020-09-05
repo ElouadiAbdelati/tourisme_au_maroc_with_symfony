@@ -9,10 +9,8 @@
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="description" content="">
-		<meta
-		name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<!-- <link rel="manifest" href="site.webmanifest"> -->
 		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png')}}">
 		<!-- Place favicon.ico in the root directory -->
 
@@ -45,8 +43,8 @@
 									<div class="logo">
 										<a href="{{ path('home') }}">
 											<h2 style="color: red;">Mghrib<span style="color: green;">NA<span></h2>
-												</a>
-											</div>
+										</a>
+									</div>
 										</div>
 										<div class="col-xl-6 col-lg-6">
 											<div class="main-menu  d-none d-lg-block">
@@ -108,9 +106,7 @@
 			<script>
 				var region = "{{ ville.region.nom }}";
 			</script>
-			<script src="{{ asset('js/covid-19-dest-details.js') }}">
-				var region = "{{ ville.region.nom }}";
-			</script>
+			<script src="{{ asset('js/covid-19-dest-details.js') }}"></script>
 		{% else %}
 			<script src="{{ asset('js/covid-19.js') }}"></script>
 		{% endif %}
@@ -308,17 +304,6 @@
 		<script src="{{ asset('js/ajax.js')}}"></script>
 		<script></script>
 		<script src="{{asset('js/covid-19-animation.js')}}"></script>
-		{# var region = "{{ ville.region.nom }}";
-				fetch('https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=RegionFr%20%3D%20%27' + region + '%27&outFields=*&returnGeometry=false&outSR=4326&f=json').then(response => response.json()).then(data => {
-		                        console.log(data);
-		                        document.getElementById('title').innerHTML = "L'état sanitaire dans la région de " + data.features[0].attributes.Nom_Région_FR + ' ' + data.features[0].attributes.Nom_Région_AR;
-		                        
-		                        document.getElementById('total-cases').innerHTML = data.features[0].attributes.Cases;
-								document.getElementById('deaths').innerHTML = data.features[0].attributes.Deaths;
-								document.getElementById('recovered').innerHTML = data.features[0].attributes.Recoveries;
-								document.getElementById('new-cases').innerHTML = 0;
-								}); #}
-
-
+		{% block javascripts %}{% endblock %}
 	</body>
 </html>

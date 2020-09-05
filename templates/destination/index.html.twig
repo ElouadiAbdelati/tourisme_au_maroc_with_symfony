@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DestinationController!
+{% block title %}Destinations
 {% endblock %}
 
 {% block body %}
 	{{ app.session.set('destination','destination')}}
 	{% set v = app.session.remove('ville') %}
-	{% set c= app.session.remove('contact') %}
+	{% set c = app.session.remove('contact') %}
 
 	<!-- bradcam_area  -->
 	<div class="bradcam_area bradcam_bg_2">
@@ -28,7 +28,6 @@
 		<script>
 			nameVilles.push("{{ ville.name }}");
 		</script>
-		<div class="js-user-rating" data-is-authenticated="{{ ville | json_encode | raw }}"></div>
 	{% endfor %}
 
 	<div class="popular_places_area">
@@ -36,7 +35,7 @@
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="filter_result_wrap">
-						<h3>Filter de résultats</h3>
+						<h3>Filter les résultats</h3>
 						<form class="chatAjaxForm" action="{{path('destination_filter')}}" method="post">
 							<div class="filter_bordered">
 								<div class="filter_inner">
@@ -79,7 +78,7 @@
 					<div class="row">
 
 						{% for ville in villes %}
-							<div id="{{ville.name}}" class="col-lg-6 col-md-6">
+							<div id="{{ville.name | replace({'': "_"}) }}" class="col-lg-6 col-md-6">
 								<div class="single_place">
 									<div class="thumb">
 										<img src="{{asset("/img/place/" ~ ville.image)}}" alt={{ ville.name }}>
@@ -97,7 +96,7 @@
 													{% else %}
 														<i class="far fa-heart fa-7x"></i>
 													{% endif %}
-													<span class="js-liks">{{ville.likes| length}}</span>
+													<span class="js-liks">{{ville.likes | length}}</span>
 													<span class="js-label">J'aime</span>
 												</a>
 											</span>

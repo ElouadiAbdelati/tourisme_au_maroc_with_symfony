@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!
+{% block title %}Contact
 {% endblock %}
 
 {% block body %}
@@ -32,14 +32,14 @@
 			</div>
 		</div>
 
-		{% if result=="succee" %}
+		{% if result == "succee" %}
 			<div class="container">
 				<div class="alert alert-primary" role="alert">
 					<strong>le messsage a bien ete  envoye!</strong>
 				</div>
 			</div>
 		{% endif %}
-		{% if result=="vide"   %}
+		{% if result == "vide"   %}
 			<div class="container">
 				<div class="alert alert-danger" role="alert">
 					<strong>erreur</strong>

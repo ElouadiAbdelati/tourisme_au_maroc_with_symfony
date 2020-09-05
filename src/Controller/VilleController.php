@@ -106,7 +106,6 @@ class VilleController extends AbstractController
         }
         $entityManager = $this->getDoctrine()->getManager();
         if ($ville->isLikedByUser($user)) {
-
             $like = $villeLikeRepository->findOneBy(['ville' => $ville, 'user' => $user]);
             $entityManager->remove($like);
             $entityManager->flush();

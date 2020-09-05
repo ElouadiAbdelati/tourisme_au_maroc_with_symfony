@@ -45,10 +45,10 @@ class BlogController extends AbstractController
      */
     public function categoryBlogs(Request $request, Categorie $categorie, PaginatorInterface $paginator, TagRepository $tagRepository, CategorieRepository $categorieRepository, BlogRepository $blogRepository)
     {
-         $categories= $categorieRepository->findBlogByPublished();
+        $categories= $categorieRepository->findBlogByPublished();
         $tags = $tagRepository->findAll();
         $blogs = $paginator->paginate(
-           $blogRepository->findBlogByCategorieAndPublished($categorie),
+            $blogRepository->findBlogByCategorieAndPublished($categorie),
             $request->query->getInt('page', 1),
             4
         );
@@ -61,6 +61,7 @@ class BlogController extends AbstractController
             'categorie' => $categorie,
         ]);
     }
+
     /**
      * @Route("tag/{id}", name="tag_blogs")
      */
@@ -100,55 +101,5 @@ class BlogController extends AbstractController
             'blogs'=>$blogs,
             'tags'=>$tags
         ]);
-    }
-
-    /**
-     * @Route("/blog/commentaire", name="commentaire_blog"  )
-     */
-    public function commentaire(Request $request, BlogRepository $blogRepository)
-    {
-        $c = $request->request->get('commentaire');
-        $blog = $request->request->get('blog');
-        $commentaire = new CommentaireBlog();
-         $error = "empty";
-        if (!empty($c)) {
-            $blog = $blogRepository->findOneBy(array('id' => $blog));
-            $commentaire->setBlog($blog);
-            $commentaire->setContent($c);
-            $error = "valid";
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($commentaire);
-            $entityManager->flush();
-        }
-        $nom = '';
-        $prenom = '';
-        $u='';
-        if ($this->getUser()->getClient() != null) {
-            $nom = $this->getUser()->getClient()->getNom();
-            $prenom = $this->getUser()->getClient()->getPrenom();
-            $u='client';
-        } elseif ($this->getUser()->getAgriculteur() != null) {
-            $nom = $this->getUser()->getAgriculteur()->getNom();
-            $prenom = $this->getUser()->getAgriculteur()->getPrenom();
-            $u='agriculteur';
-        } else {
-            $nom = $this->getUser()->getAdmin()->getNom();
-            $prenom = $this->getUser()->getAdmin()->getPrenom();
-            $u='admin';
-        }
-        $data = $this->get('serializer')->serialize(
-            [
-                'commentaire' => $commentaire->getContent(),
-                'nom' => $nom,
-                'prenom' => $prenom,
-                'error' => $error,
-                'user'=>$u
-            ],
-            'json'
-        );
-        $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
-    }
-
+    }    
 }
