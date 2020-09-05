@@ -56,9 +56,9 @@ class DestinationDetailsController extends AbstractController
   }
   
   /**
-   * @Route("/comentaire", name="comentaire" , methods={"GET","POST"})
+   * @Route("/commentaire", name="comentaire" , methods={"GET","POST"})
    */
-  public function comentaire(Request $request, VilleRepository $villeRepository, SluggerInterface $slugger)
+  public function commentaire(Request $request, VilleRepository $villeRepository, SluggerInterface $slugger)
   {   
     $c = $request->request->get('comentaire');
     $ville = $request->request->get('ville');

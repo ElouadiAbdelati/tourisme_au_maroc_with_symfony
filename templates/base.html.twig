@@ -46,7 +46,7 @@
 								<div class="col-xl-2 col-lg-2">
 									<div class="logo">
 										<a href="{{ path('home') }}">
-											<h2 style="color: red;">Mghrib<span style="color: green;">NA<span></h2>
+											<h2 style="color: red;">Maghrib<span style="color: green;">NA<span></h2>
 												</a>
 											</div>
 										</div>
@@ -90,9 +90,16 @@
 											</div>
 										</div>
 										<div class="seach_icon">
-											<a href="{{path('app_login')}}">
+										   {% if app.user %}
+										   <a href="{{path('app_logout')}}">
+												<i class="fa fa-sign-out fa-7x "></i>
+											</a>
+										   {% else %}
+										   <a href="{{path('app_login')}}">
 												<i class="fa fa-sign-in fa-7x "></i>
 											</a>
+										   {% endif %}
+											
 										</div>
 										<div class="col-12">
 											<div class="mobile_menu d-block d-lg-none"></div>
@@ -316,7 +323,7 @@
 		fetch('https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=RegionFr%20%3D%20%27' + region + '%27&outFields=*&returnGeometry=false&outSR=4326&f=json').then(response => response.json()).then(data => {
                         console.log(data);
                         document.getElementById('title').innerHTML = "L'état sanitaire dans la région de " + data.features[0].attributes.Nom_Région_FR + ' ' + data.features[0].attributes.Nom_Région_AR;
-                        
+                        s
                         document.getElementById('total-cases').innerHTML = data.features[0].attributes.Cases;
 						document.getElementById('deaths').innerHTML = data.features[0].attributes.Deaths;
 						document.getElementById('recovered').innerHTML = data.features[0].attributes.Recoveries;
