@@ -41,24 +41,22 @@ class DestinationController extends AbstractController
      /**
      * @Route("/destination/filter", name="destination_filter")
      */
-    public function filterDestination(Request $request,VilleRepository $villeRepository,RegionRepository $regionRepository) :
-    Response
+    public function filterDestination(Request $request,VilleRepository $villeRepository,RegionRepository $regionRepository) :Response
     {    
-        $data = explode("\"" ,$request->getContent());
-        $region = $data[3];
+        //if 0 => all regions
+        $region = $request->request->get('id');
         if( $region == 0){
            $villes = $villeRepository->findAll();
         }else{
            $villes = $villeRepository->findBy(array('region'=>$region));
         }
-       foreach($villes as $ville){
-           $v1 = new Ville;
-           $v1->setName($ville->getName());
-           $v1->setImage($ville->getImage());
-           $villes1[] = $v1;
+        $villes1 = [];
+        foreach($villes as $v){
+           array_push($villes1,$v->getName());
        }
-
-       $data = $this->get('serializer')->serialize(['villes'=>$villes1], 'json');
+ 
+       $serializer =$this->get('serializer');
+       $data= $serializer->serialize(['villes'=>$villes1], 'json');
        $response = new Response($data);
        $response->headers->set('Content-Type', 'application/json');
 

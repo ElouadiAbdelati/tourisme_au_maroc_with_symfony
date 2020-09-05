@@ -23,7 +23,9 @@ function initMap() {
     });
 
     var markers = [];
+
     for (let i = 0; i < hotelMarkers.length; i++) {
+        // marker hotel
         var mh = new google.maps.Marker({
             position: hotelMarkers[i].position, map: map,
             icon: {
@@ -33,6 +35,7 @@ function initMap() {
         mh.setTitle(hotelMarkers[i].title);
         markers.push(mh);
     }
+
     for (let i = 0; i < restoMarkers.length; i++) {
         var mr = new google.maps.Marker({
             position: restoMarkers[i].position, map: map,
@@ -51,7 +54,9 @@ function initMap() {
         ma.setTitle(activiteMarkers[i].title);
         markers.push(ma);
     }
+
     var infowindow = new google.maps.InfoWindow();
+
     markers.map((m) => {
         m.addListener('click', function () {
             $('html,body').animate({
@@ -59,13 +64,14 @@ function initMap() {
             }, 'slow');
             $("#" + m.getTitle()).hide(1100);
             $("#" + m.getTitle()).show(2000);
-            // $("#" + m.getTitle()).animate({height: '+=20%'});
         });
+        
         m.addListener('mouseover', function () {
             infowindow.setContent(m.getTitle());
             infowindow.open(map, m);
         });
     });
+
     $("#customControlValidation1").change(function () {
         if (this.checked) {
             markers.map((m) => {
